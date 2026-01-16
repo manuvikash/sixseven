@@ -74,8 +74,9 @@ class ResearchAgent:
                 logger.error("research_failed", job_id=job.job_id, error=result)
                 return
             
-            # Extract structured result
-            structured_result = result.get("output", {})
+            # Extract structured result - Yutori returns it in 'structured_result' field
+            structured_result = result.get("structured_result", {})
+            markdown_result = result.get("result")  # Markdown format
             
             job.status = "succeeded"
             job.progress = 100
@@ -83,7 +84,7 @@ class ResearchAgent:
                 "task_id": task_id,
                 "view_url": result.get("view_url"),
                 "structured_result": structured_result,
-                "markdown_result": result.get("markdown")
+                "markdown_result": markdown_result
             }
             job.add_event("info", "Research task succeeded")
             self.store.update_job(job)
@@ -107,7 +108,7 @@ class ResearchAgent:
     async def _create_task(self, query: str, timezone: str) -> Dict[str, Any]:
         """Create Yutori research task."""
         headers = {
-            "Authorization": f"Bearer {self.api_key}",
+            "X-API-Key": self.api_key,
             "Content-Type": "application/json"
         }
         
@@ -116,19 +117,22 @@ class ResearchAgent:
             "user_timezone": timezone,
             "task_spec": {
                 "output_schema": {
-                    "type": "object",
-                    "properties": {
-                        "answer": {"type": "string"},
-                        "bullets": {
-                            "type": "array",
-                            "items": {"type": "string"}
+                    "type": "json",
+                    "json_schema": {
+                        "type": "object",
+                        "properties": {
+                            "answer": {"type": "string"},
+                            "bullets": {
+                                "type": "array",
+                                "items": {"type": "string"}
+                            },
+                            "citations": {
+                                "type": "array",
+                                "items": {"type": "string"}
+                            }
                         },
-                        "citations": {
-                            "type": "array",
-                            "items": {"type": "string"}
-                        }
-                    },
-                    "required": ["answer", "bullets", "citations"]
+                        "required": ["answer", "bullets", "citations"]
+                    }
                 }
             }
         }
@@ -138,7 +142,7 @@ class ResearchAgent:
     async def _poll_task(self, job: Job, task_id: str) -> Dict[str, Any]:
         """Poll Yutori task until completion."""
         headers = {
-            "Authorization": f"Bearer {self.api_key}"
+            "X-API-Key": self.api_key
         }
         
         poll_url = f"{self.base_url}/{task_id}"

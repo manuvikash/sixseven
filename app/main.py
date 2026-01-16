@@ -52,7 +52,7 @@ app = FastAPI(
 )
 
 # Add observability middleware
-app.middleware("http")(ObservabilityMiddleware(app))
+app.add_middleware(ObservabilityMiddleware)
 
 # CORS middleware
 app.add_middleware(

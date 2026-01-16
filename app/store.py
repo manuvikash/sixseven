@@ -73,5 +73,5 @@ class InMemoryJobStore(JobStore):
     def update_session(self, session: Session) -> Session:
         with self.lock:
             session.last_updated_at = datetime.utcnow()
-            self.sessions[session_id] = session
+            self.sessions[session.session_id] = session
             return session

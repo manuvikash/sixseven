@@ -14,6 +14,7 @@ from opentelemetry.sdk.metrics.export import PeriodicExportingMetricReader, Cons
 from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
 from opentelemetry.instrumentation.httpx import HTTPXClientInstrumentor
 from prometheus_client import Counter, Histogram, Gauge, generate_latest, CONTENT_TYPE_LATEST
+from starlette.middleware.base import BaseHTTPMiddleware
 from fastapi import Request, Response
 import logging
 
@@ -128,17 +129,10 @@ def get_logger(name: str):
     return structlog.get_logger(name)
 
 
-class ObservabilityMiddleware:
+class ObservabilityMiddleware(BaseHTTPMiddleware):
     """Middleware to add observability to all requests."""
     
-    def __init__(self, app):
-        self.app = app
-    
-    async def __call__(self, scope, receive, send):
-        if scope["type"] != "http":
-            await self.app(scope, receive, send)
-            return
-        
+    async def dispatch(self, request: Request, call_next):
         # Generate request ID
         request_id = str(uuid4())
         request_id_var.set(request_id)
@@ -146,32 +140,22 @@ class ObservabilityMiddleware:
         # Track request timing
         start_time = time.time()
         
-        # Capture response status
-        status_code = 200
+        # Process request
+        response = await call_next(request)
         
-        async def send_wrapper(message):
-            nonlocal status_code
-            if message["type"] == "http.response.start":
-                status_code = message["status"]
-                # Add request ID to response headers
-                headers = list(message.get("headers", []))
-                headers.append((b"x-request-id", request_id.encode()))
-                message["headers"] = headers
-            await send(message)
+        # Record metrics
+        duration = time.time() - start_time
         
-        try:
-            await self.app(scope, receive, send_wrapper)
-        finally:
-            # Record metrics
-            duration = time.time() - start_time
-            endpoint = scope.get("path", "unknown")
-            method = scope.get("method", "unknown")
-            
-            API_LATENCY.labels(
-                endpoint=endpoint,
-                method=method,
-                status_code=status_code
-            ).observe(duration)
+        API_LATENCY.labels(
+            endpoint=request.url.path,
+            method=request.method,
+            status_code=response.status_code
+        ).observe(duration)
+        
+        # Add request ID to response headers
+        response.headers["X-Request-ID"] = request_id
+        
+        return response
 
 
 class JobObserver:
