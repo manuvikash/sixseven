@@ -95,8 +95,7 @@
         }
         
         .job-list {
-            max-height: 600px;
-            overflow-y: auto;
+            /* No max-height - let it grow naturally */
         }
         
         .job-item {
@@ -501,6 +500,113 @@
             margin-bottom: 15px;
             font-size: 13px;
         }
+        
+        /* Image comparison styles for creative jobs */
+        .image-comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-top: 12px;
+        }
+        
+        .image-comparison-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #1e293b;
+        }
+        
+        .image-comparison-label {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            z-index: 10;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .before-label {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+        }
+        
+        .after-label {
+            background: rgba(167, 139, 250, 0.9);
+            color: white;
+        }
+        
+        .comparison-image {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+        }
+        
+        .before-image {
+            border: 3px solid #475569;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .after-image {
+            border: 3px solid #a78bfa;
+            box-shadow: 0 4px 12px rgba(167, 139, 250, 0.4);
+        }
+        
+        .image-download-btn {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .image-download-btn:hover {
+            background: rgba(167, 139, 250, 0.9);
+            transform: translateY(-2px);
+        }
+        
+        .creative-status-msg {
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            font-size: 13px;
+            text-align: center;
+        }
+        
+        .creative-status-msg.status-queued {
+            background: #475569;
+            color: #e2e8f0;
+        }
+        
+        .creative-status-msg.status-running {
+            background: #3b82f6;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+        
+        .creative-status-msg.status-failed {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .image-placeholder {
+            padding: 24px;
+            background: #334155;
+            border-radius: 8px;
+            margin-top: 8px;
+            text-align: center;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -514,6 +620,18 @@
         <div class="test-form">
             <input type="text" id="testCommand" placeholder="Enter command (e.g., 'research quantum computing')" value="research latest AI developments">
             <button onclick="sendCommand()">Send Command</button>
+        </div>
+        <div class="image-upload-section" style="margin-top: 15px; padding: 15px; background: #0f172a; border-radius: 8px;">
+            <h3 style="color: #94a3b8; font-size: 14px; margin-bottom: 10px;">Creative Task (with Image)</h3>
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px;">
+                <input type="file" id="imageInput" accept="image/*" style="flex: 1; padding: 8px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #e2e8f0; font-size: 13px;">
+                <button onclick="previewImage()" style="padding: 8px 16px; background: #475569; border: none; border-radius: 6px; color: white; cursor: pointer;">Preview</button>
+            </div>
+            <div id="imagePreview" style="margin-bottom: 10px;"></div>
+            <div style="display: flex; gap: 10px;">
+                <input type="text" id="creativePrompt" placeholder="Enter creative prompt (e.g., 'imagine a cyberpunk city')" style="flex: 1; padding: 10px; background: #1e293b; border: 1px solid #334155; border-radius: 6px; color: #e2e8f0; font-size: 13px;">
+                <button onclick="sendCreativeCommand()" style="padding: 10px 20px; background: #a78bfa; border: none; border-radius: 6px; color: white; font-weight: 600; cursor: pointer;">Generate</button>
+            </div>
         </div>
         <div class="quick-actions">
             <button class="quick-action" onclick="sendQuickCommand('status')">Check Status</button>
@@ -583,7 +701,9 @@
     </div>
 
     <div class="refresh-info">
-        Auto-refreshing every 3 seconds • Last update: <span id="lastUpdate">-</span>
+        Auto-refresh: <span id="refreshStatus">Active (5s)</span> • Last update: <span id="lastUpdate">-</span>
+        <button onclick="stopAutoRefresh()" style="margin-left: 10px; padding: 4px 8px; background: #475569; border: none; border-radius: 4px; color: white; cursor: pointer; font-size: 11px;">Pause</button>
+        <button onclick="startAutoRefresh()" style="margin-left: 5px; padding: 4px 8px; background: #10b981; border: none; border-radius: 4px; color: white; cursor: pointer; font-size: 11px;">Resume</button>
     </div>
 
     <script>
@@ -591,6 +711,8 @@
         let jobs = [];
         let metrics = {};
         let expandedJobs = new Set(); // Track which jobs are expanded
+        let currentImageBase64 = null; // Store current image for creative tasks
+        window.jobImages = {}; // Store input images for display
 
         async function fetchHealth() {
             try {
@@ -681,34 +803,173 @@
                 return;
             }
             
-            container.innerHTML = jobs.map(job => {
-                const isExpanded = expandedJobs.has(job.job_id);
-                return `
-                <div class="job-item ${job.type} ${isExpanded ? 'expanded' : ''}" onclick="toggleJobDetails('${job.job_id}')">
-                    <div class="job-header">
-                        <span class="job-type">${job.type}</span>
-                        <span class="job-status ${job.status}">${job.status}</span>
-                    </div>
-                    <div class="job-command">${job.input.command_text}</div>
-                    <div class="job-meta">
-                        <span>🆔 ${job.job_id.substring(0, 8)}...</span>
-                        <span>⏱️ ${formatDuration(job)}</span>
-                        <span>📅 ${formatTime(job.created_at)}</span>
-                    </div>
-                    <div class="job-details" id="details-${job.job_id}">
-                        ${renderJobDetails(job)}
-                    </div>
-                </div>
-            `;
-            }).join('');
+            // Get existing job items
+            const existingItems = new Map();
+            container.querySelectorAll('.job-item').forEach(item => {
+                const jobId = item.getAttribute('data-job-id');
+                if (jobId) existingItems.set(jobId, item);
+            });
+            
+            // Update or create job items
+            jobs.forEach((job, index) => {
+                const existingItem = existingItems.get(job.job_id);
+                
+                if (existingItem) {
+                    // Update existing item (only status and details if expanded)
+                    const statusEl = existingItem.querySelector('.job-status');
+                    if (statusEl && statusEl.textContent !== job.status) {
+                        statusEl.className = `job-status ${job.status}`;
+                        statusEl.textContent = job.status;
+                    }
+                    
+                    // Update details if expanded
+                    if (expandedJobs.has(job.job_id)) {
+                        const detailsEl = existingItem.querySelector('.job-details');
+                        if (detailsEl) {
+                            detailsEl.innerHTML = renderJobDetails(job);
+                        }
+                    }
+                    
+                    existingItems.delete(job.job_id);
+                } else {
+                    // Create new item
+                    // Auto-expand creative jobs that have images stored
+                    if (job.type === 'creative' && window.jobImages[job.job_id]) {
+                        expandedJobs.add(job.job_id);
+                    }
+                    
+                    const isExpanded = expandedJobs.has(job.job_id);
+                    const newItem = document.createElement('div');
+                    newItem.className = `job-item ${job.type} ${isExpanded ? 'expanded' : ''}`;
+                    newItem.setAttribute('data-job-id', job.job_id);
+                    newItem.setAttribute('onclick', `toggleJobDetails('${job.job_id}')`);
+                    newItem.innerHTML = `
+                        <div class="job-header">
+                            <span class="job-type">${job.type}</span>
+                            <span class="job-status ${job.status}">${job.status}</span>
+                        </div>
+                        <div class="job-command">${job.input.command_text}</div>
+                        <div class="job-meta">
+                            <span>🆔 ${job.job_id.substring(0, 8)}...</span>
+                            <span>⏱️ ${formatDuration(job)}</span>
+                            <span>📅 ${formatTime(job.created_at)}</span>
+                        </div>
+                        <div class="job-details" id="details-${job.job_id}">
+                            ${renderJobDetails(job)}
+                        </div>
+                    `;
+                    
+                    // Insert at correct position
+                    if (index === 0) {
+                        container.insertBefore(newItem, container.firstChild);
+                    } else {
+                        const prevItem = container.querySelector(`[data-job-id="${jobs[index - 1].job_id}"]`);
+                        if (prevItem && prevItem.nextSibling) {
+                            container.insertBefore(newItem, prevItem.nextSibling);
+                        } else {
+                            container.appendChild(newItem);
+                        }
+                    }
+                }
+            });
+            
+            // Remove items that no longer exist
+            existingItems.forEach(item => item.remove());
         }
 
         function renderJobDetails(job) {
             let html = '';
             
+            // For creative jobs, always try to show input image
+            if (job.type === 'creative') {
+                // Try to load input image from memory or localStorage
+                let inputImageSrc = window.jobImages[job.job_id];
+                if (!inputImageSrc) {
+                    try {
+                        inputImageSrc = localStorage.getItem(`job_image_${job.job_id}`);
+                        if (inputImageSrc) {
+                            window.jobImages[job.job_id] = inputImageSrc;
+                        }
+                    } catch (e) {
+                        console.warn('Failed to load image from localStorage:', e);
+                    }
+                }
+                
+                // Check if we have generated images (job succeeded)
+                const hasGeneratedImages = job.result && job.result.generated_urls && job.result.generated_urls.length > 0;
+                
+                // Always show creative section for creative jobs
+                html += '<div class="result-section">';
+                
+                if (hasGeneratedImages && inputImageSrc) {
+                    // Job succeeded with both input and output - show before/after
+                    html += '<h4>Before & After</h4>';
+                    html += '<div class="image-comparison-grid">';
+                    
+                    // Before image
+                    html += '<div class="image-comparison-item">';
+                    html += '<div class="image-comparison-label before-label">BEFORE</div>';
+                    html += `<img src="${inputImageSrc}" class="comparison-image before-image" />`;
+                    html += '</div>';
+                    
+                    // After image(s)
+                    job.result.generated_urls.forEach((url, i) => {
+                        html += '<div class="image-comparison-item">';
+                        html += '<div class="image-comparison-label after-label">AFTER</div>';
+                        html += `<img src="${url}" class="comparison-image after-image" />`;
+                        html += `<a href="${url}" target="_blank" class="image-download-btn">Open Full Size</a>`;
+                        html += '</div>';
+                    });
+                    
+                    html += '</div>';
+                } else if (hasGeneratedImages) {
+                    // Job succeeded but no input image available - show generated only
+                    html += '<h4>Generated Images</h4>';
+                    html += '<div class="image-comparison-grid">';
+                    job.result.generated_urls.forEach((url, i) => {
+                        html += '<div class="image-comparison-item">';
+                        html += '<div class="image-comparison-label after-label">GENERATED</div>';
+                        html += `<img src="${url}" class="comparison-image after-image" />`;
+                        html += `<a href="${url}" target="_blank" class="image-download-btn">Open Full Size</a>`;
+                        html += '</div>';
+                    });
+                    html += '</div>';
+                } else if (inputImageSrc) {
+                    // Job is still running/queued - show input image with status
+                    html += '<h4>Input Image</h4>';
+                    html += '<div class="image-comparison-grid">';
+                    html += '<div class="image-comparison-item">';
+                    html += '<div class="image-comparison-label before-label">INPUT</div>';
+                    html += `<img src="${inputImageSrc}" class="comparison-image before-image" />`;
+                    html += '</div>';
+                    html += '</div>';
+                    
+                    // Show status message
+                    if (job.status === 'queued') {
+                        html += '<div class="creative-status-msg status-queued">⏳ Task is queued...</div>';
+                    } else if (job.status === 'running') {
+                        html += '<div class="creative-status-msg status-running">🎨 Generating image...</div>';
+                    } else if (job.status === 'failed') {
+                        html += '<div class="creative-status-msg status-failed">❌ Generation failed</div>';
+                    }
+                } else {
+                    // No image available at all
+                    html += '<h4>Input Image</h4>';
+                    html += '<div class="image-placeholder">';
+                    html += '📷 Image data not available in this session<br>';
+                    html += '<span style="font-size: 12px; opacity: 0.7;">Image was uploaded in a different session</span>';
+                    html += '</div>';
+                }
+                
+                html += '</div>';
+            }
+            
             // Results
             if (job.result) {
-                html += '<div class="result-section">';
+                // Only open result section for non-creative or creative without images already shown
+                if (job.type !== 'creative' || !window.jobImages[job.job_id]) {
+                    html += '<div class="result-section">';
+                }
                 
                 if (job.type === 'research' && job.result.structured_result) {
                     const result = job.result.structured_result;
@@ -748,14 +1009,15 @@
                     if (job.result.view_url) {
                         html += `<a href="${job.result.view_url}" target="_blank" class="view-full-report">🔗 View Interactive Report on Yutori</a>`;
                     }
-                } else if (job.type === 'creative' && job.result.generated_urls) {
-                    html += '<h4>Generated Images</h4>';
-                    job.result.generated_urls.forEach(url => {
-                        html += `<img src="${url}" style="max-width: 100%; border-radius: 8px; margin-top: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" />`;
-                    });
+                } else if (job.type === 'creative') {
+                    // Creative results already handled above in before/after section
+                    // Nothing to do here
                 }
                 
-                html += '</div>';
+                // Close result section only if we opened it
+                if (job.type !== 'creative' || !window.jobImages[job.job_id]) {
+                    html += '</div>';
+                }
             }
             
             // Error
@@ -769,12 +1031,26 @@
                 html += '</div>';
             }
             
-            // Events
+            // Events - only show last 3, not all
             if (job.events && job.events.length > 0) {
                 html += '<div class="result-section">';
-                html += '<h4>Timeline</h4>';
+                html += '<h4>Recent Activity</h4>';
                 html += '<div class="events-timeline">';
-                job.events.slice(-5).reverse().forEach(event => {
+                
+                // Get last 3 unique events (skip duplicate polling updates)
+                const uniqueEvents = [];
+                const seen = new Set();
+                
+                for (let i = job.events.length - 1; i >= 0 && uniqueEvents.length < 3; i--) {
+                    const event = job.events[i];
+                    const key = event.message.split(':')[0]; // Group by message prefix
+                    if (!seen.has(key) || !event.message.includes('Polling update')) {
+                        uniqueEvents.push(event);
+                        seen.add(key);
+                    }
+                }
+                
+                uniqueEvents.forEach(event => {
                     html += `
                         <div class="event-item">
                             <span>${event.message}</span>
@@ -794,10 +1070,21 @@
                 expandedJobs.delete(jobId);
             } else {
                 expandedJobs.add(jobId);
+                
+                // Re-render details when expanding to pick up latest data including images
+                const job = jobs.find(j => j.job_id === jobId);
+                if (job) {
+                    const detailsEl = document.querySelector(`#details-${jobId}`);
+                    if (detailsEl) {
+                        detailsEl.innerHTML = renderJobDetails(job);
+                    }
+                }
             }
             
-            const element = document.querySelector(`#details-${jobId}`).parentElement;
-            element.classList.toggle('expanded');
+            const element = document.querySelector(`[data-job-id="${jobId}"]`);
+            if (element) {
+                element.classList.toggle('expanded');
+            }
         }
 
         function formatDuration(job) {
@@ -909,16 +1196,151 @@
             document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
         }
 
-        // Auto-refresh
-        setInterval(refreshDashboard, 3000);
+        // Auto-refresh - but slower and smarter
+        let refreshInterval;
+        
+        function startAutoRefresh() {
+            // Refresh metrics and jobs regularly
+            refreshInterval = setInterval(async () => {
+                await fetchMetrics();
+                // Always fetch jobs to keep status updated (especially for creative tasks)
+                // The renderJobs function handles smooth updates without DOM recreation
+                await fetchJobs();
+                document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+            }, 5000);
+        }
+        
+        function stopAutoRefresh() {
+            if (refreshInterval) {
+                clearInterval(refreshInterval);
+            }
+        }
+        
+        // Manual refresh for when user wants it
+        async function refreshDashboard() {
+            stopAutoRefresh();
+            await Promise.all([
+                fetchHealth(),
+                fetchMetrics(),
+                fetchJobs()
+            ]);
+            document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+            startAutoRefresh();
+        }
         
         // Initial load
         refreshDashboard();
+        
+        // Pause refresh when user is interacting
+        document.addEventListener('click', () => {
+            stopAutoRefresh();
+            setTimeout(startAutoRefresh, 10000); // Resume after 10s of no interaction
+        });
         
         // Handle Enter key in command input
         document.getElementById('testCommand').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') sendCommand();
         });
+        
+        document.getElementById('creativePrompt').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendCreativeCommand();
+        });
+        
+        // Image handling functions
+        function previewImage() {
+            const fileInput = document.getElementById('imageInput');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Please select an image first');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                // Store the FULL data URL (including prefix) for proper display
+                currentImageBase64 = e.target.result;
+                
+                // Show preview
+                const preview = document.getElementById('imagePreview');
+                preview.innerHTML = `
+                    <div style="position: relative; display: inline-block;">
+                        <img src="${e.target.result}" style="max-width: 200px; max-height: 200px; border-radius: 8px; border: 2px solid #60a5fa;">
+                        <span style="position: absolute; top: 8px; right: 8px; background: rgba(0,0,0,0.7); color: white; padding: 4px 8px; border-radius: 4px; font-size: 11px;">✓ Ready</span>
+                    </div>
+                `;
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        async function sendCreativeCommand() {
+            const prompt = document.getElementById('creativePrompt').value;
+            const resultDiv = document.getElementById('testResult');
+            
+            if (!currentImageBase64) {
+                resultDiv.innerHTML = '<div class="error-message" style="margin-top: 10px;">Please select and preview an image first!</div>';
+                return;
+            }
+            
+            if (!prompt) {
+                resultDiv.innerHTML = '<div class="error-message" style="margin-top: 10px;">Please enter a creative prompt!</div>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<div class="loading">Sending creative command...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/v1/command`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        command_text: prompt,
+                        image_base64: currentImageBase64.split(',')[1], // Send only base64 part to API
+                        session_id: 'dashboard-session',
+                        defaults: {
+                            freepik_aspect_ratio: '16:9'
+                        }
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Store the FULL data URL (with prefix) for display
+                if (data.job_id && currentImageBase64) {
+                    window.jobImages[data.job_id] = currentImageBase64; // Store full data URL
+                    // Also store in localStorage for persistence
+                    try {
+                        localStorage.setItem(`job_image_${data.job_id}`, currentImageBase64);
+                    } catch (e) {
+                        console.warn('Failed to store image in localStorage:', e);
+                    }
+                    
+                    // Auto-expand this job to show the image
+                    expandedJobs.add(data.job_id);
+                    
+                    console.log(`[IMAGE STORED] Job ${data.job_id.substring(0, 8)}: ${currentImageBase64.substring(0, 50)}...`);
+                }
+                
+                resultDiv.innerHTML = `
+                    <div style="background: #065f46; color: #6ee7b7; padding: 12px; border-radius: 6px; margin-top: 10px; font-size: 13px;">
+                        ✓ Creative task started! Job ID: ${data.job_id || 'N/A'}<br>
+                        Intent: ${data.intent} | Status: ${data.status || 'N/A'}<br>
+                        <span style="font-size: 11px; opacity: 0.8;">Check the job list below for results...</span>
+                    </div>
+                `;
+                
+                // Refresh jobs immediately to show the image
+                setTimeout(() => {
+                    fetchJobs();
+                }, 500);
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error-message" style="margin-top: 10px;">
+                        Failed to send command: ${error.message}
+                    </div>
+                `;
+            }
+        }
     </script>
 </body>
 </html>

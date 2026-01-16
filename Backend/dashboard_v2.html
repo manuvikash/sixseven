@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SixSeven (67) Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #60a5fa;
+        }
+        
+        .stat-label {
+            color: #94a3b8;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #60a5fa;
+            margin-top: 5px;
+        }
+        
+        .control-panel {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 10px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 6px 6px 0 0;
+            transition: all 0.2s;
+        }
+        
+        .tab.active {
+            background: #334155;
+            color: #60a5fa;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        .input-group label {
+            display: block;
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+        
+        .input-group input[type="text"],
+        .input-group input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #e2e8f0;
+            font-size: 14px;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: #a78bfa;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #8b5cf6;
+        }
+        
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        
+        .image-preview {
+            margin-top: 10px;
+            max-width: 200px;
+            border-radius: 8px;
+            border: 2px solid #60a5fa;
+        }
+        
+        .jobs-container {
+            background: #1e293b;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .jobs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .jobs-header h2 {
+            color: #94a3b8;
+            font-size: 18px;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            padding: 6px 12px;
+            background: #334155;
+            border: none;
+            border-radius: 6px;
+            color: #e2e8f0;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .filter-btn.active {
+            background: #60a5fa;
+        }
+        
+        .job-card {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #60a5fa;
+            transition: all 0.3s ease;
+        }
+        
+        .job-card.creative {
+            border-left-color: #a78bfa;
+        }
+        
+        .job-card.expanded {
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+        
+        .job-title {
+            flex: 1;
+        }
+        
+        .job-type {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #60a5fa;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .job-command {
+            font-size: 16px;
+            color: #e2e8f0;
+            margin: 5px 0;
+        }
+        
+        .job-meta {
+            font-size: 12px;
+            color: #64748b;
+        }
+        
+        .job-status {
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-queued { background: #475569; }
+        .status-running { background: #3b82f6; animation: pulse 2s infinite; }
+        .status-succeeded { background: #10b981; }
+        .status-failed { background: #ef4444; }
+        .status-cancelled { background: #f59e0b; }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .job-details {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            display: none;
+        }
+        
+        .job-card.expanded .job-details {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .result-section {
+            margin-bottom: 20px;
+        }
+        
+        .result-section h4 {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .result-answer {
+            background: #1e293b;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 3px solid #60a5fa;
+            line-height: 1.7;
+        }
+        
+        .result-bullets {
+            list-style: none;
+        }
+        
+        .result-bullets li {
+            background: #1e293b;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            padding-left: 35px;
+            position: relative;
+        }
+        
+        .result-bullets li:before {
+            content: "→";
+            position: absolute;
+            left: 15px;
+            color: #60a5fa;
+            font-weight: bold;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .image-container {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .image-container img {
+            width: 100%;
+            display: block;
+        }
+        
+        .image-label {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+        }
+        
+        .alert {
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        
+        .alert-success {
+            background: #065f46;
+            color: #6ee7b7;
+        }
+        
+        .alert-error {
+            background: #7f1d1d;
+            color: #fca5a5;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+        }
+        
+        .spinner {
+            border: 3px solid #334155;
+            border-top: 3px solid #60a5fa;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 SixSeven (67) Dashboard</h1>
+            <p>Agentic Backend Monitoring & Control</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Total Commands</div>
+                <div class="stat-value" id="totalCommands">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Success Rate</div>
+                <div class="stat-value" id="successRate">0%</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Active Jobs</div>
+                <div class="stat-value" id="activeJobs">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">API Calls</div>
+                <div class="stat-value" id="apiCalls">0</div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <div class="tabs">
+                <button class="tab active" onclick="switchTab('research')">Research</button>
+                <button class="tab" onclick="switchTab('creative')">Creative</button>
+                <button class="tab" onclick="switchTab('status')">Status</button>
+            </div>
+
+            <div id="research-tab" class="tab-content active">
+                <div class="input-group">
+                    <label>Research Query</label>
+                    <input type="text" id="researchQuery" placeholder="e.g., latest developments in quantum computing">
+                </div>
+                <button class="btn btn-primary" onclick="sendResearch()">Start Research</button>
+                <div id="researchResult"></div>
+            </div>
+
+            <div id="creative-tab" class="tab-content">
+                <div class="input-group">
+                    <label>Upload Image</label>
+                    <input type="file" id="imageFile" accept="image/*" onchange="previewImage()">
+                </div>
+                <div id="imagePreview"></div>
+                <div class="input-group">
+                    <label>Creative Prompt</label>
+                    <input type="text" id="creativePrompt" placeholder="e.g., imagine a cyberpunk city with neon lights">
+                </div>
+                <button class="btn btn-secondary" onclick="sendCreative()">Generate Image</button>
+                <div id="creativeResult"></div>
+            </div>
+
+            <div id="status-tab" class="tab-content">
+                <button class="btn btn-primary" onclick="checkStatus()">Check Status</button>
+                <button class="btn btn-primary btn-small" onclick="loadJobs()" style="margin-left: 10px;">Refresh Jobs</button>
+                <div id="statusResult"></div>
+            </div>
+        </div>
+
+        <div class="jobs-container">
+            <div class="jobs-header">
+                <h2>Jobs</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterJobs('all')">All</button>
+                    <button class="filter-btn" onclick="filterJobs('research')">Research</button>
+                    <button class="filter-btn" onclick="filterJobs('creative')">Creative</button>
+                    <button class="filter-btn" onclick="filterJobs('running')">Running</button>
+                </div>
+            </div>
+            <div id="jobsList">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading jobs...
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Last updated: <span id="lastUpdate">Never</span> • 
+            <button class="btn btn-small" onclick="loadJobs()">Refresh</button>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        let allJobs = [];
+        let currentFilter = 'all';
+        let expandedJobs = new Set();
+        let currentImageBase64 = null;
+        let jobImages = {};
+
+        // Initialize
+        async function init() {
+            await loadMetrics();
+            await loadJobs();
+            // Auto-refresh every 5 seconds
+            setInterval(async () => {
+                await loadMetrics();
+                await loadJobs();
+            }, 5000);
+        }
+
+        // Tab switching
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(`${tab}-tab`).classList.add('active');
+        }
+
+        // Load metrics
+        async function loadMetrics() {
+            try {
+                const response = await fetch(`${API_BASE}/metrics`);
+                const text = await response.text();
+                parseMetrics(text);
+            } catch (error) {
+                console.error('Failed to load metrics:', error);
+            }
+        }
+
+        function parseMetrics(text) {
+            const lines = text.split('\n');
+            let totalCommands = 0;
+            let succeeded = 0;
+            let activeJobs = 0;
+            let apiCalls = 0;
+
+            lines.forEach(line => {
+                if (line.includes('sixseven_commands_total') && !line.startsWith('#')) {
+                    const match = line.match(/([0-9.]+)$/);
+                    if (match) {
+                        const value = parseFloat(match[1]);
+                        totalCommands += value;
+                        if (line.includes('succeeded')) succeeded += value;
+                    }
+                }
+                if (line.includes('sixseven_active_jobs') && !line.startsWith('#')) {
+                    const match = line.match(/([0-9.]+)$/);
+                    if (match) activeJobs += parseFloat(match[1]);
+                }
+                if (line.includes('sixseven_external_api_calls_total') && !line.startsWith('#')) {
+                    const match = line.match(/([0-9.]+)$/);
+                    if (match) apiCalls += parseFloat(match[1]);
+                }
+            });
+
+            document.getElementById('totalCommands').textContent = Math.round(totalCommands);
+            document.getElementById('successRate').textContent = 
+                totalCommands > 0 ? ((succeeded / totalCommands) * 100).toFixed(1) + '%' : '0%';
+            document.getElementById('activeJobs').textContent = Math.round(activeJobs);
+            document.getElementById('apiCalls').textContent = Math.round(apiCalls);
+        }
+
+        // Load jobs
+        async function loadJobs() {
+            try {
+                const response = await fetch(`${API_BASE}/v1/jobs?limit=50`);
+                const jobs = await response.json();
+                
+                allJobs = jobs;
+                renderJobsSmooth();
+                
+                document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+            } catch (error) {
+                console.error('Failed to load jobs:', error);
+                document.getElementById('jobsList').innerHTML = 
+                    '<div class="alert alert-error">Failed to load jobs</div>';
+            }
+        }
+
+        // Filter jobs
+        function filterJobs(filter) {
+            currentFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderJobs();
+        }
+
+        // Render jobs (smooth update without blinking)
+        function renderJobsSmooth() {
+            let filtered = allJobs;
+            
+            if (currentFilter === 'research') filtered = allJobs.filter(j => j.type === 'research');
+            else if (currentFilter === 'creative') filtered = allJobs.filter(j => j.type === 'creative');
+            else if (currentFilter === 'running') filtered = allJobs.filter(j => j.status === 'running' || j.status === 'queued');
+            
+            const container = document.getElementById('jobsList');
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="loading">No jobs found</div>';
+                return;
+            }
+            
+            // Get existing job cards
+            const existingCards = new Map();
+            container.querySelectorAll('.job-card').forEach(card => {
+                const jobId = card.getAttribute('data-job-id');
+                if (jobId) existingCards.set(jobId, card);
+            });
+            
+            // Update or create cards
+            filtered.forEach((job, index) => {
+                const existingCard = existingCards.get(job.job_id);
+                
+                if (existingCard) {
+                    // Update existing card (only status and details if expanded)
+                    const statusEl = existingCard.querySelector('.job-status');
+                    if (statusEl && statusEl.textContent !== job.status) {
+                        statusEl.className = `job-status status-${job.status}`;
+                        statusEl.textContent = job.status;
+                    }
+                    
+                    // Update details if expanded
+                    if (expandedJobs.has(job.job_id)) {
+                        const detailsEl = existingCard.querySelector('.job-details');
+                        if (detailsEl) {
+                            detailsEl.innerHTML = renderJobDetails(job);
+                        }
+                    }
+                    
+                    existingCards.delete(job.job_id);
+                } else {
+                    // Create new card
+                    const newCard = document.createElement('div');
+                    newCard.className = `job-card ${job.type} ${expandedJobs.has(job.job_id) ? 'expanded' : ''}`;
+                    newCard.setAttribute('data-job-id', job.job_id);
+                    newCard.innerHTML = `
+                        <div class="job-header" onclick="toggleJob('${job.job_id}')">
+                            <div class="job-title">
+                                <div class="job-type">${job.type}</div>
+                                <div class="job-command">${escapeHtml(job.input.command_text)}</div>
+                                <div class="job-meta">
+                                    ${job.job_id.substring(0, 8)}... • 
+                                    ${formatDuration(job)} • 
+                                    ${new Date(job.created_at).toLocaleTimeString()}
+                                </div>
+                            </div>
+                            <div class="job-status status-${job.status}">${job.status}</div>
+                        </div>
+                        <div class="job-details">
+                            ${renderJobDetails(job)}
+                        </div>
+                    `;
+                    
+                    // Insert at correct position
+                    if (index === 0) {
+                        container.insertBefore(newCard, container.firstChild);
+                    } else {
+                        const prevCard = container.querySelector(`[data-job-id="${filtered[index - 1].job_id}"]`);
+                        if (prevCard && prevCard.nextSibling) {
+                            container.insertBefore(newCard, prevCard.nextSibling);
+                        } else {
+                            container.appendChild(newCard);
+                        }
+                    }
+                }
+            });
+            
+            // Remove cards that no longer exist
+            existingCards.forEach(card => card.remove());
+        }
+        
+        // Render jobs (full re-render for filter changes)
+        function renderJobs() {
+            let filtered = allJobs;
+            
+            if (currentFilter === 'research') filtered = allJobs.filter(j => j.type === 'research');
+            else if (currentFilter === 'creative') filtered = allJobs.filter(j => j.type === 'creative');
+            else if (currentFilter === 'running') filtered = allJobs.filter(j => j.status === 'running' || j.status === 'queued');
+            
+            if (filtered.length === 0) {
+                document.getElementById('jobsList').innerHTML = 
+                    '<div class="loading">No jobs found</div>';
+                return;
+            }
+            
+            document.getElementById('jobsList').innerHTML = filtered.map(job => `
+                <div class="job-card ${job.type} ${expandedJobs.has(job.job_id) ? 'expanded' : ''}" 
+                     data-job-id="${job.job_id}">
+                    <div class="job-header" onclick="toggleJob('${job.job_id}')">
+                        <div class="job-title">
+                            <div class="job-type">${job.type}</div>
+                            <div class="job-command">${escapeHtml(job.input.command_text)}</div>
+                            <div class="job-meta">
+                                ${job.job_id.substring(0, 8)}... • 
+                                ${formatDuration(job)} • 
+                                ${new Date(job.created_at).toLocaleTimeString()}
+                            </div>
+                        </div>
+                        <div class="job-status status-${job.status}">${job.status}</div>
+                    </div>
+                    <div class="job-details">
+                        ${renderJobDetails(job)}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Toggle job expansion
+        function toggleJob(jobId) {
+            const card = document.querySelector(`[data-job-id="${jobId}"]`);
+            if (expandedJobs.has(jobId)) {
+                expandedJobs.delete(jobId);
+                card.classList.remove('expanded');
+            } else {
+                expandedJobs.add(jobId);
+                card.classList.add('expanded');
+            }
+        }
+
+        // Render job details
+        function renderJobDetails(job) {
+            let html = '';
+            
+            if (job.result) {
+                if (job.type === 'research' && job.result.structured_result) {
+                    const result = job.result.structured_result;
+                    
+                    if (result.answer) {
+                        html += '<div class="result-section">';
+                        html += '<h4>Answer</h4>';
+                        html += `<div class="result-answer">${escapeHtml(result.answer)}</div>`;
+                        html += '</div>';
+                    }
+                    
+                    if (result.bullets && result.bullets.length > 0) {
+                        html += '<div class="result-section">';
+                        html += '<h4>Key Points</h4>';
+                        html += '<ul class="result-bullets">';
+                        result.bullets.forEach(bullet => {
+                            html += `<li>${escapeHtml(bullet)}</li>`;
+                        });
+                        html += '</ul></div>';
+                    }
+                    
+                    if (job.result.view_url) {
+                        html += `<a href="${job.result.view_url}" target="_blank" class="btn btn-primary btn-small">View Full Report</a>`;
+                    }
+                } else if (job.type === 'creative') {
+                    html += '<div class="result-section">';
+                    
+                    // Try to load input image from memory or localStorage
+                    let inputImageSrc = jobImages[job.job_id];
+                    if (!inputImageSrc && job.input.image_present) {
+                        try {
+                            inputImageSrc = localStorage.getItem(`job_image_${job.job_id}`);
+                            if (inputImageSrc) {
+                                jobImages[job.job_id] = inputImageSrc;
+                            }
+                        } catch (e) {
+                            console.warn('Failed to load image from localStorage:', e);
+                        }
+                    }
+                    
+                    // Show input image if available
+                    if (inputImageSrc) {
+                        html += '<h4>Input Image</h4>';
+                        html += '<div class="image-grid">';
+                        html += `
+                            <div class="image-container">
+                                <img src="${inputImageSrc}" alt="Input">
+                                <div class="image-label">Input</div>
+                            </div>
+                        `;
+                        html += '</div>';
+                    }
+                    
+                    // Show generated images
+                    if (job.result.generated_urls && job.result.generated_urls.length > 0) {
+                        html += '<h4>Generated Images</h4>';
+                        html += '<div class="image-grid">';
+                        job.result.generated_urls.forEach((url, i) => {
+                            html += `
+                                <div class="image-container">
+                                    <img src="${url}" alt="Generated ${i + 1}">
+                                    <div class="image-label">Generated ${i + 1}</div>
+                                </div>
+                            `;
+                        });
+                        html += '</div>';
+                    }
+                    
+                    html += '</div>';
+                }
+            }
+            
+            if (job.error) {
+                html += '<div class="alert alert-error">';
+                html += `<strong>Error:</strong> ${escapeHtml(job.error.message)}`;
+                if (job.error.details) {
+                    html += `<br><small>${escapeHtml(job.error.details)}</small>`;
+                }
+                html += '</div>';
+            }
+            
+            return html;
+        }
+
+        // Send research
+        async function sendResearch() {
+            const query = document.getElementById('researchQuery').value;
+            const resultDiv = document.getElementById('researchResult');
+            
+            if (!query) {
+                resultDiv.innerHTML = '<div class="alert alert-error">Please enter a query</div>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<div class="loading"><div class="spinner"></div>Sending...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/v1/command`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        command_text: `research ${query}`,
+                        session_id: 'dashboard'
+                    })
+                });
+                
+                const data = await response.json();
+                resultDiv.innerHTML = `<div class="alert alert-success">✓ Research started! Job ID: ${data.job_id}</div>`;
+                setTimeout(loadJobs, 1000);
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="alert alert-error">Failed: ${error.message}</div>`;
+            }
+        }
+
+        // Preview image
+        function previewImage() {
+            const file = document.getElementById('imageFile').files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                currentImageBase64 = e.target.result.split(',')[1];
+                document.getElementById('imagePreview').innerHTML = `
+                    <img src="${e.target.result}" class="image-preview" alt="Preview">
+                `;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Send creative
+        async function sendCreative() {
+            const prompt = document.getElementById('creativePrompt').value;
+            const resultDiv = document.getElementById('creativeResult');
+            
+            if (!currentImageBase64) {
+                resultDiv.innerHTML = '<div class="alert alert-error">Please upload an image first</div>';
+                return;
+            }
+            
+            if (!prompt) {
+                resultDiv.innerHTML = '<div class="alert alert-error">Please enter a prompt</div>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<div class="loading"><div class="spinner"></div>Generating...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/v1/command`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        command_text: prompt,
+                        image_base64: currentImageBase64,
+                        session_id: 'dashboard',
+                        defaults: { freepik_aspect_ratio: '16:9' }
+                    })
+                });
+                
+                const data = await response.json();
+                
+                // Store the input image for display
+                if (data.job_id && currentImageBase64) {
+                    jobImages[data.job_id] = 'data:image/png;base64,' + currentImageBase64;
+                    // Also store in localStorage for persistence
+                    try {
+                        localStorage.setItem(`job_image_${data.job_id}`, jobImages[data.job_id]);
+                    } catch (e) {
+                        console.warn('Failed to store image in localStorage:', e);
+                    }
+                }
+                
+                resultDiv.innerHTML = `<div class="alert alert-success">✓ Generation started! Job ID: ${data.job_id}</div>`;
+                setTimeout(loadJobs, 1000);
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="alert alert-error">Failed: ${error.message}</div>`;
+            }
+        }
+
+        // Check status
+        async function checkStatus() {
+            const resultDiv = document.getElementById('statusResult');
+            resultDiv.innerHTML = '<div class="loading"><div class="spinner"></div>Checking...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/v1/command`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        command_text: 'status',
+                        session_id: 'dashboard'
+                    })
+                });
+                
+                const data = await response.json();
+                resultDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+            } catch (error) {
+                resultDiv.innerHTML = `<div class="alert alert-error">Failed: ${error.message}</div>`;
+            }
+        }
+
+        // Utilities
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatDuration(job) {
+            const start = new Date(job.created_at);
+            const end = new Date(job.updated_at);
+            const seconds = Math.round((end - start) / 1000);
+            return seconds < 60 ? `${seconds}s` : `${Math.floor(seconds / 60)}m`;
+        }
+
+        // Start
+        init();
+    </script>
+</body>
+</html>

@@ -194,3 +194,56 @@ async def cancel_job(job_id: str):
         "message": "Job cancelled",
         "job_id": job_id
     }
+
+
+@app.get("/v1/debug/test-freepik")
+async def test_freepik():
+    """Test Freepik API key."""
+    import httpx
+    import os
+    
+    api_key = os.getenv("FREEPIK_API_KEY", "")
+    
+    if not api_key:
+        return {"error": "FREEPIK_API_KEY not set in environment"}
+    
+    # Test with minimal request
+    try:
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            response = await client.post(
+                "https://api.freepik.com/v1/ai/text-to-image/seedream-v4-5-edit",
+                headers={
+                    "x-freepik-api-key": api_key,
+                    "Content-Type": "application/json"
+                },
+                json={
+                    "prompt": "test image",
+                    "reference_images": ["iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="],
+                    "aspect_ratio": "square_1_1"
+                }
+            )
+            
+            result = {
+                "status_code": response.status_code,
+                "api_key_prefix": api_key[:15] + "...",
+                "api_key_length": len(api_key),
+                "headers_sent": {
+                    "x-freepik-api-key": api_key[:15] + "...",
+                    "Content-Type": "application/json"
+                }
+            }
+            
+            if response.status_code == 200:
+                result["response"] = response.json()
+            else:
+                result["error_text"] = response.text[:1000]
+                result["response_headers"] = dict(response.headers)
+            
+            return result
+    except Exception as e:
+        return {
+            "error": str(e),
+            "error_type": type(e).__name__,
+            "api_key_prefix": api_key[:15] + "...",
+            "api_key_length": len(api_key)
+        }

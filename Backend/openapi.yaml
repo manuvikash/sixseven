@@ -1,0 +1,496 @@
+openapi: 3.0.3
+info:
+  title: SixSeven (67) API
+  description: Voice-controlled agentic backend for research and creative tasks
+  version: 1.0.0
+  contact:
+    name: API Support
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+
+tags:
+  - name: Commands
+    description: Voice command processing
+  - name: Jobs
+    description: Job management and status
+  - name: System
+    description: Health and metrics
+
+paths:
+  /v1/command:
+    post:
+      tags:
+        - Commands
+      summary: Send voice command
+      description: Main endpoint for processing voice commands. Returns immediately with job ID for async tasks.
+      operationId: sendCommand
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommandRequest'
+            examples:
+              research:
+                summary: Research command
+                value:
+                  command_text: "research quantum computing"
+                  session_id: "user-123"
+              creative:
+                summary: Creative command
+                value:
+                  command_text: "imagine a futuristic city"
+                  image_base64: "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJ..."
+                  session_id: "user-123"
+                  defaults:
+                    freepik_aspect_ratio: "16:9"
+              status:
+                summary: Status check
+                value:
+                  command_text: "status"
+                  session_id: "user-123"
+      responses:
+        '200':
+          description: Command processed successfully
+          headers:
+            X-Request-ID:
+              schema:
+                type: string
+              description: Unique request identifier
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommandResponse'
+              examples:
+                research:
+                  summary: Research response
+                  value:
+                    intent: "research"
+                    message: "Starting research on: quantum computing..."
+                    session_id: "user-123"
+                    job_id: "550e8400-e29b-41d4-a716-446655440000"
+                    status: "queued"
+                status:
+                  summary: Status response
+                  value:
+                    intent: "status"
+                    message: "Your research task is running. Elapsed time: 5 seconds."
+                    session_id: "user-123"
+                    active_job:
+                      job_id: "550e8400-e29b-41d4-a716-446655440000"
+                      type: "research"
+                      status: "running"
+                      elapsed_seconds: 5
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/jobs/{job_id}:
+    get:
+      tags:
+        - Jobs
+      summary: Get job details
+      description: Retrieve complete job information including results and events
+      operationId: getJob
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Job UUID
+      responses:
+        '200':
+          description: Job found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /v1/jobs:
+    get:
+      tags:
+        - Jobs
+      summary: List jobs
+      description: List jobs with optional filtering (newest first)
+      operationId: listJobs
+      parameters:
+        - name: session_id
+          in: query
+          schema:
+            type: string
+          description: Filter by session ID
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [research, creative]
+          description: Filter by job type
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [queued, r
+unning, succeeded, failed, cancelled]
+          description: Filter by job status
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+          description: Maximum number of results
+      responses:
+        '200':
+          description: List of jobs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Job'
+
+  /v1/jobs/{job_id}/cancel:
+    post:
+      tags:
+        - Jobs
+      summary: Cancel job
+      description: Cancel a running or queued job
+      operationId: cancelJob
+      parameters:
+        - name: job_id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Job UUID
+      responses:
+        '200':
+          description: Job cancelled or already terminal
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  message:
+                    type: string
+                  job_id:
+                    type: string
+        '404':
+          description: Job not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /healthz:
+    get:
+      tags:
+        - System
+      summary: Health check
+      description: Check if backend is running
+      operationId: healthCheck
+      responses:
+        '200':
+          description: Backend is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    example: true
+
+  /metrics:
+    get:
+      tags:
+        - System
+      summary: Prometheus metrics
+      description: Get Prometheus-formatted metrics for monitoring
+      operationId: getMetrics
+      responses:
+        '200':
+          description: Metrics available
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: |
+                # HELP sixseven_commands_total Total number of commands received
+                # TYPE sixseven_commands_total counter
+                sixseven_commands_total{intent="research",status="created"} 42.0
+
+components:
+  schemas:
+    CommandRequest:
+      type: object
+      required:
+        - command_text
+      properties:
+        command_text:
+          type: string
+          description: Natural language command (everything after "hey 67")
+          example: "research quantum computing"
+        image_base64:
+          type: string
+          nullable: true
+          description: Base64-encoded image for creative tasks (JPEG/PNG)
+        session_id:
+          type: string
+          nullable: true
+          description: Session identifier for grouping commands
+          example: "user-123"
+        defaults:
+          type: object
+          properties:
+            timezone:
+              type: string
+              default: "America/Los_Angeles"
+              example: "America/Los_Angeles"
+            freepik_imagination:
+              type: string
+              default: "vivid"
+              example: "vivid"
+            freepik_aspect_ratio:
+              type: string
+              default: "16:9"
+              enum: ["1:1", "16:9", "9:16", "2:3", "3:4", "3:2", "4:3", "21:9"]
+              example: "16:9"
+
+    CommandResponse:
+      type: object
+      required:
+        - intent
+        - message
+        - session_id
+      properties:
+        intent:
+          type: string
+          enum: [research, creative, status, stop, unknown]
+          description: Detected intent
+        message:
+          type: string
+          description: Human-friendly message suitable for TTS
+          example: "Starting research on: quantum computing..."
+        session_id:
+          type: string
+          description: Session ID (echoed or generated)
+        job_id:
+          type: string
+          format: uuid
+          nullable: true
+          description: UUID of created job (for research/creative)
+        status:
+          type: string
+          nullable: true
+          enum: [queued, running, succeeded, failed, cancelled]
+          description: Initial job status (for research/creative)
+        active_job:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/ActiveJobSummary'
+          description: Active job summary (for status intent)
+        cancelled_job_id:
+          type: string
+          format: uuid
+          nullable: true
+          description: ID of cancelled job (for stop intent)
+
+    Job:
+      type: object
+      required:
+        - job_id
+        - type
+        - status
+        - created_at
+        - updated_at
+        - input
+        - events
+        - cancelled
+      properties:
+        job_id:
+          type: string
+          format: uuid
+        session_id:
+          type: string
+          nullable: true
+        type:
+          type: string
+          enum: [research, creative]
+        status:
+          type: string
+          enum: [queued, running, succeeded, failed, cancelled]
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        input:
+          $ref: '#/components/schemas/JobInput'
+        progress:
+          type: integer
+          nullable: true
+          minimum: 0
+          maximum: 100
+        result:
+          nullable: true
+          oneOf:
+            - $ref: '#/components/schemas/ResearchResult'
+            - $ref: '#/components/schemas/CreativeResult'
+        error:
+          nullable: true
+          $ref: '#/components/schemas/JobError'
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobEvent'
+          maxItems: 50
+        cancelled:
+          type: boolean
+
+    JobInput:
+      type: object
+      required:
+        - command_text
+        - query_or_prompt
+        - params
+        - image_present
+      properties:
+        command_text:
+          type: string
+        query_or_prompt:
+          type: string
+        params:
+          type: object
+          additionalProperties: true
+        image_present:
+          type: boolean
+
+    ResearchResult:
+      type: object
+      properties:
+        task_id:
+          type: string
+        view_url:
+          type: string
+          format: uri
+        structured_result:
+          type: object
+          properties:
+            answer:
+              type: string
+            bullets:
+              type: array
+              items:
+                type: string
+            citations:
+              type: array
+              items:
+                type: string
+                format: uri
+        markdown_result:
+          type: string
+          nullable: true
+
+    CreativeResult:
+      type: object
+      properties:
+        task_id:
+          type: string
+        status:
+          type: string
+        generated_urls:
+          type: array
+          items:
+            type: string
+            format: uri
+        async_note:
+          type: string
+          nullable: true
+        full_response:
+          type: object
+          additionalProperties: true
+
+    JobError:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+        details:
+          type: string
+          nullable: true
+        payload:
+          type: string
+          nullable: true
+
+    JobEvent:
+      type: object
+      required:
+        - ts
+        - level
+        - message
+      properties:
+        ts:
+          type: string
+          format: date-time
+        level:
+          type: string
+          enum: [info, warning, error]
+        message:
+          type: string
+        data:
+          type: object
+          nullable: true
+          additionalProperties: true
+
+    ActiveJobSummary:
+      type: object
+      properties:
+        job_id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum: [research, creative]
+        status:
+          type: string
+          enum: [queued, running, succeeded, failed, cancelled]
+        elapsed_seconds:
+          type: integer
+        last_event:
+          type: object
+          nullable: true
+          properties:
+            message:
+              type: string
+            ts:
+              type: string
+              format: date-time
+
+    Error:
+      type: object
+      required:
+        - detail
+      properties:
+        detail:
+          type: string
+          example: "Error message here"
