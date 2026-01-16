@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SixSeven (67) - Agentic Backend Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .metric:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-label {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+        
+        .metric-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #60a5fa;
+        }
+        
+        .metric-value.success {
+            color: #34d399;
+        }
+        
+        .metric-value.error {
+            color: #f87171;
+        }
+        
+        .metric-value.warning {
+            color: #fbbf24;
+        }
+        
+        .job-list {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        
+        .job-item {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-left: 4px solid #60a5fa;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .job-item:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2);
+        }
+        
+        .job-item.research {
+            border-left-color: #60a5fa;
+        }
+        
+        .job-item.creative {
+            border-left-color: #a78bfa;
+        }
+        
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .job-type {
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .job-status {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .job-status.queued {
+            background: #475569;
+            color: #e2e8f0;
+        }
+        
+        .job-status.running {
+            background: #3b82f6;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+        
+        .job-status.succeeded {
+            background: #10b981;
+            color: white;
+        }
+        
+        .job-status.failed {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .job-status.cancelled {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .job-command {
+            color: #e2e8f0;
+            font-size: 14px;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .job-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 12px;
+            color: #64748b;
+        }
+        
+        .job-details {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #334155;
+            display: none;
+        }
+        
+        .job-item.expanded .job-details {
+            display: block;
+        }
+        
+        .result-section {
+            margin-top: 12px;
+        }
+        
+        .result-section h4 {
+            color: #94a3b8;
+            font-size: 13px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+        
+        .result-answer {
+            background: #0f172a;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+            border-left: 3px solid #60a5fa;
+        }
+        
+        .markdown-content {
+            background: #0f172a;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            line-height: 1.6;
+            margin-top: 12px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .markdown-content h1 {
+            color: #60a5fa;
+            font-size: 18px;
+            margin: 16px 0 12px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #334155;
+        }
+        
+        .markdown-content h2 {
+            color: #94a3b8;
+            font-size: 16px;
+            margin: 14px 0 10px 0;
+            font-weight: 600;
+        }
+        
+        .markdown-content p {
+            margin-bottom: 12px;
+            color: #cbd5e1;
+        }
+        
+        .markdown-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 12px 0;
+        }
+        
+        .markdown-content li {
+            padding: 10px 12px;
+            background: #1e293b;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            padding-left: 30px;
+            position: relative;
+            color: #cbd5e1;
+        }
+        
+        .markdown-content li:before {
+            content: "▸";
+            position: absolute;
+            left: 12px;
+            color: #60a5fa;
+            font-weight: bold;
+        }
+        
+        .markdown-content strong {
+            color: #e2e8f0;
+            font-weight: 600;
+        }
+        
+        .markdown-content a {
+            color: #60a5fa;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        
+        .markdown-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .view-full-report {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        
+        .view-full-report:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .result-bullets {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .result-bullets li {
+            padding: 8px 12px;
+            background: #0f172a;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            font-size: 13px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .result-bullets li:before {
+            content: "→";
+            position: absolute;
+            left: 12px;
+            color: #60a5fa;
+            font-weight: bold;
+        }
+        
+        .citations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .citation {
+            background: #0f172a;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #60a5fa;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .citation:hover {
+            background: #60a5fa;
+            color: white;
+        }
+        
+        .events-timeline {
+            margin-top: 12px;
+        }
+        
+        .event-item {
+            padding: 8px 12px;
+            background: #0f172a;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .event-level {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .event-level.info {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .event-level.error {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .event-level.warning {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        .test-panel {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .test-form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .test-form input {
+            flex: 1;
+            padding: 12px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #e2e8f0;
+            font-size: 14px;
+        }
+        
+        .test-form button {
+            padding: 12px 24px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .test-form button:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+        
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .quick-action {
+            padding: 8px 16px;
+            background: #334155;
+            border: none;
+            border-radius: 6px;
+            color: #e2e8f0;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quick-action:hover {
+            background: #475569;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-indicator.online {
+            background: #10b981;
+            box-shadow: 0 0 8px #10b981;
+        }
+        
+        .status-indicator.offline {
+            background: #ef4444;
+        }
+        
+        .refresh-info {
+            text-align: center;
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+        
+        .chart-container {
+            height: 200px;
+            margin-top: 15px;
+        }
+        
+        .no-jobs {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #64748b;
+        }
+        
+        .error-message {
+            background: #7f1d1d;
+            color: #fca5a5;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎯 SixSeven (67) Dashboard</h1>
+        <p>Agentic Backend Monitoring & Control Panel</p>
+    </div>
+
+    <div class="test-panel">
+        <h2 style="color: #94a3b8; font-size: 16px; margin-bottom: 15px;">Quick Test</h2>
+        <div class="test-form">
+            <input type="text" id="testCommand" placeholder="Enter command (e.g., 'research quantum computing')" value="research latest AI developments">
+            <button onclick="sendCommand()">Send Command</button>
+        </div>
+        <div class="quick-actions">
+            <button class="quick-action" onclick="sendQuickCommand('status')">Check Status</button>
+            <button class="quick-action" onclick="refreshDashboard()">Refresh Now</button>
+            <button class="quick-action" onclick="clearJobs()">Clear View</button>
+        </div>
+        <div id="testResult"></div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h2>System Status</h2>
+            <div class="metric">
+                <span class="metric-label">Backend</span>
+                <span class="metric-value" id="backendStatus">
+                    <span class="status-indicator online"></span>Checking...
+                </span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Total Commands</span>
+                <span class="metric-value" id="totalCommands">-</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Success Rate</span>
+                <span class="metric-value success" id="successRate">-</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Active Jobs</h2>
+            <div class="metric">
+                <span class="metric-label">Research</span>
+                <span class="metric-value" id="activeResearch">-</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Creative</span>
+                <span class="metric-value" id="activeCreative">-</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Total Active</span>
+                <span class="metric-value warning" id="totalActive">-</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>External APIs</h2>
+            <div class="metric">
+                <span class="metric-label">Yutori Calls</span>
+                <span class="metric-value" id="yutoriCalls">-</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">Freepik Calls</span>
+                <span class="metric-value" id="freepikCalls">-</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">API Errors</span>
+                <span class="metric-value error" id="apiErrors">-</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Recent Jobs</h2>
+        <div id="jobsList" class="job-list">
+            <div class="loading">Loading jobs...</div>
+        </div>
+    </div>
+
+    <div class="refresh-info">
+        Auto-refreshing every 3 seconds • Last update: <span id="lastUpdate">-</span>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8000';
+        let jobs = [];
+        let metrics = {};
+        let expandedJobs = new Set(); // Track which jobs are expanded
+
+        async function fetchHealth() {
+            try {
+                const response = await fetch(`${API_BASE}/healthz`);
+                const data = await response.json();
+                document.getElementById('backendStatus').innerHTML = 
+                    '<span class="status-indicator online"></span>Online';
+                return true;
+            } catch (error) {
+                document.getElementById('backendStatus').innerHTML = 
+                    '<span class="status-indicator offline"></span>Offline';
+                return false;
+            }
+        }
+
+        async function fetchMetrics() {
+            try {
+                const response = await fetch(`${API_BASE}/metrics`);
+                const text = await response.text();
+                parseMetrics(text);
+            } catch (error) {
+                console.error('Failed to fetch metrics:', error);
+            }
+        }
+
+        function parseMetrics(text) {
+            const lines = text.split('\n');
+            metrics = {};
+            
+            lines.forEach(line => {
+                if (line.startsWith('#') || !line.trim()) return;
+                
+                const match = line.match(/^([a-z_]+)(\{[^}]+\})?\s+([0-9.]+)/);
+                if (match) {
+                    const [, name, labels, value] = match;
+                    if (!metrics[name]) metrics[name] = [];
+                    metrics[name].push({ labels: labels || '', value: parseFloat(value) });
+                }
+            });
+            
+            updateMetricsDisplay();
+        }
+
+        function updateMetricsDisplay() {
+            // Total commands
+            const totalCommands = metrics['sixseven_commands_total']?.reduce((sum, m) => sum + m.value, 0) || 0;
+            document.getElementById('totalCommands').textContent = Math.round(totalCommands);
+            
+            // Success rate
+            const succeeded = metrics['sixseven_commands_total']?.find(m => m.labels.includes('succeeded'))?.value || 0;
+            const successRate = totalCommands > 0 ? ((succeeded / totalCommands) * 100).toFixed(1) : 0;
+            document.getElementById('successRate').textContent = successRate + '%';
+            
+            // Active jobs
+            const activeResearch = metrics['sixseven_active_jobs']?.find(m => m.labels.includes('research'))?.value || 0;
+            const activeCreative = metrics['sixseven_active_jobs']?.find(m => m.labels.includes('creative'))?.value || 0;
+            document.getElementById('activeResearch').textContent = Math.round(activeResearch);
+            document.getElementById('activeCreative').textContent = Math.round(activeCreative);
+            document.getElementById('totalActive').textContent = Math.round(activeResearch + activeCreative);
+            
+            // External API calls
+            const yutoriCalls = metrics['sixseven_external_api_calls_total']?.find(m => m.labels.includes('yutori'))?.value || 0;
+            const freepikCalls = metrics['sixseven_external_api_calls_total']?.find(m => m.labels.includes('freepik'))?.value || 0;
+            const apiErrors = metrics['sixseven_external_api_calls_total']?.filter(m => m.labels.includes('error')).reduce((sum, m) => sum + m.value, 0) || 0;
+            
+            document.getElementById('yutoriCalls').textContent = Math.round(yutoriCalls);
+            document.getElementById('freepikCalls').textContent = Math.round(freepikCalls);
+            document.getElementById('apiErrors').textContent = Math.round(apiErrors);
+        }
+
+        async function fetchJobs() {
+            try {
+                const response = await fetch(`${API_BASE}/v1/jobs?limit=50`);
+                jobs = await response.json();
+                renderJobs();
+            } catch (error) {
+                console.error('Failed to fetch jobs:', error);
+                document.getElementById('jobsList').innerHTML = 
+                    '<div class="error-message">Failed to load jobs. Is the backend running?</div>';
+            }
+        }
+
+        function renderJobs() {
+            const container = document.getElementById('jobsList');
+            
+            if (jobs.length === 0) {
+                container.innerHTML = '<div class="no-jobs">No jobs yet. Try sending a command above!</div>';
+                return;
+            }
+            
+            container.innerHTML = jobs.map(job => {
+                const isExpanded = expandedJobs.has(job.job_id);
+                return `
+                <div class="job-item ${job.type} ${isExpanded ? 'expanded' : ''}" onclick="toggleJobDetails('${job.job_id}')">
+                    <div class="job-header">
+                        <span class="job-type">${job.type}</span>
+                        <span class="job-status ${job.status}">${job.status}</span>
+                    </div>
+                    <div class="job-command">${job.input.command_text}</div>
+                    <div class="job-meta">
+                        <span>🆔 ${job.job_id.substring(0, 8)}...</span>
+                        <span>⏱️ ${formatDuration(job)}</span>
+                        <span>📅 ${formatTime(job.created_at)}</span>
+                    </div>
+                    <div class="job-details" id="details-${job.job_id}">
+                        ${renderJobDetails(job)}
+                    </div>
+                </div>
+            `;
+            }).join('');
+        }
+
+        function renderJobDetails(job) {
+            let html = '';
+            
+            // Results
+            if (job.result) {
+                html += '<div class="result-section">';
+                
+                if (job.type === 'research' && job.result.structured_result) {
+                    const result = job.result.structured_result;
+                    
+                    if (result.answer) {
+                        html += '<h4>Summary</h4>';
+                        html += `<div class="result-answer">${escapeHtml(result.answer)}</div>`;
+                    }
+                    
+                    if (result.bullets && result.bullets.length > 0) {
+                        html += '<h4>Key Findings</h4>';
+                        html += '<ul class="result-bullets">';
+                        result.bullets.forEach(bullet => {
+                            html += `<li>${escapeHtml(bullet)}</li>`;
+                        });
+                        html += '</ul>';
+                    }
+                    
+                    if (result.citations && result.citations.length > 0) {
+                        html += '<h4>Sources (${result.citations.length})</h4>';
+                        html += '<div class="citations">';
+                        result.citations.slice(0, 8).forEach((citation, i) => {
+                            html += `<a href="${citation}" target="_blank" class="citation" title="${citation}">📄 Source ${i + 1}</a>`;
+                        });
+                        if (result.citations.length > 8) {
+                            html += `<span class="citation" style="background: #334155; cursor: default;">+${result.citations.length - 8} more</span>`;
+                        }
+                        html += '</div>';
+                    }
+                    
+                    // Show markdown if available
+                    if (job.result.markdown_result) {
+                        html += '<h4>Full Report</h4>';
+                        html += `<div class="markdown-content">${formatMarkdown(job.result.markdown_result)}</div>`;
+                    }
+                    
+                    if (job.result.view_url) {
+                        html += `<a href="${job.result.view_url}" target="_blank" class="view-full-report">🔗 View Interactive Report on Yutori</a>`;
+                    }
+                } else if (job.type === 'creative' && job.result.generated_urls) {
+                    html += '<h4>Generated Images</h4>';
+                    job.result.generated_urls.forEach(url => {
+                        html += `<img src="${url}" style="max-width: 100%; border-radius: 8px; margin-top: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);" />`;
+                    });
+                }
+                
+                html += '</div>';
+            }
+            
+            // Error
+            if (job.error) {
+                html += '<div class="result-section">';
+                html += '<h4>Error</h4>';
+                html += `<div class="error-message">${job.error.message || 'Unknown error'}</div>`;
+                if (job.error.details) {
+                    html += `<div style="font-size: 12px; color: #64748b; margin-top: 8px;">${job.error.details}</div>`;
+                }
+                html += '</div>';
+            }
+            
+            // Events
+            if (job.events && job.events.length > 0) {
+                html += '<div class="result-section">';
+                html += '<h4>Timeline</h4>';
+                html += '<div class="events-timeline">';
+                job.events.slice(-5).reverse().forEach(event => {
+                    html += `
+                        <div class="event-item">
+                            <span>${event.message}</span>
+                            <span class="event-level ${event.level}">${event.level}</span>
+                        </div>
+                    `;
+                });
+                html += '</div>';
+                html += '</div>';
+            }
+            
+            return html;
+        }
+
+        function toggleJobDetails(jobId) {
+            if (expandedJobs.has(jobId)) {
+                expandedJobs.delete(jobId);
+            } else {
+                expandedJobs.add(jobId);
+            }
+            
+            const element = document.querySelector(`#details-${jobId}`).parentElement;
+            element.classList.toggle('expanded');
+        }
+
+        function formatDuration(job) {
+            const start = new Date(job.created_at);
+            const end = new Date(job.updated_at);
+            const seconds = Math.round((end - start) / 1000);
+            return seconds < 60 ? `${seconds}s` : `${Math.floor(seconds / 60)}m ${seconds % 60}s`;
+        }
+
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleTimeString();
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        function formatMarkdown(markdown) {
+            // Remove <pre> tags if present
+            let content = markdown.replace(/<\/?pre>/g, '');
+            
+            // Convert markdown to HTML
+            // Headers
+            content = content.replace(/^# (.+)$/gm, '<h1>$1</h1>');
+            content = content.replace(/^## (.+)$/gm, '<h2>$1</h2>');
+            
+            // Bold
+            content = content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            
+            // Links
+            content = content.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+            
+            // Bullet points
+            content = content.replace(/^- (.+)$/gm, '<li>$1</li>');
+            
+            // Wrap consecutive <li> in <ul>
+            content = content.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+            
+            // Paragraphs
+            content = content.split('\n\n').map(para => {
+                if (!para.match(/^<[hul]/)) {
+                    return `<p>${para}</p>`;
+                }
+                return para;
+            }).join('\n');
+            
+            // Escape HTML entities in text
+            content = content.replace(/&#x27;/g, "'");
+            content = content.replace(/&quot;/g, '"');
+            content = content.replace(/&amp;/g, '&');
+            
+            return content;
+        }
+
+        async function sendCommand() {
+            const command = document.getElementById('testCommand').value;
+            const resultDiv = document.getElementById('testResult');
+            
+            resultDiv.innerHTML = '<div class="loading">Sending command...</div>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/v1/command`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        command_text: command,
+                        session_id: 'dashboard-session'
+                    })
+                });
+                
+                const data = await response.json();
+                resultDiv.innerHTML = `
+                    <div style="background: #065f46; color: #6ee7b7; padding: 12px; border-radius: 6px; margin-top: 10px; font-size: 13px;">
+                        ✓ Command sent! Job ID: ${data.job_id || 'N/A'}<br>
+                        Intent: ${data.intent} | Status: ${data.status || 'N/A'}
+                    </div>
+                `;
+                
+                // Refresh jobs immediately
+                setTimeout(fetchJobs, 1000);
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="error-message" style="margin-top: 10px;">
+                        Failed to send command: ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        async function sendQuickCommand(command) {
+            document.getElementById('testCommand').value = command;
+            await sendCommand();
+        }
+
+        function clearJobs() {
+            jobs = [];
+            renderJobs();
+        }
+
+        async function refreshDashboard() {
+            await Promise.all([
+                fetchHealth(),
+                fetchMetrics(),
+                fetchJobs()
+            ]);
+            document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString();
+        }
+
+        // Auto-refresh
+        setInterval(refreshDashboard, 3000);
+        
+        // Initial load
+        refreshDashboard();
+        
+        // Handle Enter key in command input
+        document.getElementById('testCommand').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendCommand();
+        });
+    </script>
+</body>
+</html>

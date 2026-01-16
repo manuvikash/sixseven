@@ -1,18 +1,20 @@
 import os
+import time
 from typing import Dict, Any, Optional
 from app.models import Job
 from app.store import JobStore
 from app.utils.http import http_post_with_retry
-import logging
+from app.observability import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 class CreativeAgent:
     """Freepik Creative Agent - generates images using Reimagine Flux."""
     
-    def __init__(self, store: JobStore):
+    def __init__(self, store: JobStore, observer=None):
         self.store = store
+        self.observer = observer
         self.api_key = os.getenv("FREEPIK_API_KEY", "")
         self.base_url = "https://api.freepik.com/v1/ai/beta/text-to-image/reimagine-flux"
     
@@ -23,21 +25,29 @@ class CreativeAgent:
         job.add_event("info", "Creative task started")
         self.store.update_job(job)
         
+        logger.info("creative_started", job_id=job.job_id, prompt=job.input.query_or_prompt[:100])
+        
         try:
             if not image_base64:
                 job.status = "failed"
                 job.error = {"message": "No image provided for creative task"}
                 job.add_event("error", "No image provided")
                 self.store.update_job(job)
+                logger.error("creative_no_image", job_id=job.job_id)
                 return
             
             # Call Freepik API
+            start_time = time.time()
             result = await self._generate_image(
                 image_base64, 
                 job.input.query_or_prompt,
                 imagination,
                 aspect_ratio
             )
+            api_duration = time.time() - start_time
+            
+            if self.observer:
+                self.observer.external_api_call("freepik", "generate_image", api_duration, not result.get("error"))
             
             if result.get("error"):
                 job.status = "failed"
@@ -48,6 +58,7 @@ class CreativeAgent:
                 }
                 job.add_event("error", "Image generation failed", result)
                 self.store.update_job(job)
+                logger.error("creative_failed", job_id=job.job_id, error=result)
                 return
             
             # Check if response is async (CREATED/IN_PROGRESS)
@@ -64,6 +75,7 @@ class CreativeAgent:
                     "full_response": result
                 }
                 job.add_event("info", f"Creative task async: {status}", {"status": status})
+                logger.info("creative_async", job_id=job.job_id, status=status)
             else:
                 # Synchronous response - extract URLs
                 generated_urls = self._extract_urls(result)
@@ -79,11 +91,17 @@ class CreativeAgent:
                 job.add_event("info", "Creative task succeeded", {
                     "url_count": len(generated_urls)
                 })
+                logger.info(
+                    "creative_succeeded",
+                    job_id=job.job_id,
+                    url_count=len(generated_urls),
+                    api_duration=api_duration
+                )
             
             self.store.update_job(job)
             
         except Exception as e:
-            logger.error(f"Creative agent error: {str(e)}")
+            logger.error("creative_error", job_id=job.job_id, error=str(e), exc_info=True)
             job.status = "failed"
             job.error = {"message": str(e)}
             job.add_event("error", f"Unexpected error: {str(e)}")

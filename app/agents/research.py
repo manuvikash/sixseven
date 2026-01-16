@@ -1,19 +1,21 @@
 import asyncio
 import os
+import time
 from typing import Dict, Any
 from app.models import Job
 from app.store import JobStore
 from app.utils.http import http_post_with_retry, http_get_with_retry
-import logging
+from app.observability import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 class ResearchAgent:
     """Yutori Research Agent - creates and polls research tasks."""
     
-    def __init__(self, store: JobStore):
+    def __init__(self, store: JobStore, observer=None):
         self.store = store
+        self.observer = observer
         self.api_key = os.getenv("YUTORI_API_KEY", "")
         self.base_url = "https://api.yutori.com/v1/research/tasks"
     
@@ -23,9 +25,16 @@ class ResearchAgent:
         job.add_event("info", "Research task started")
         self.store.update_job(job)
         
+        logger.info("research_started", job_id=job.job_id, query=job.input.query_or_prompt[:100])
+        
         try:
             # Create Yutori task
+            start_time = time.time()
             task_data = await self._create_task(job.input.query_or_prompt, timezone)
+            create_duration = time.time() - start_time
+            
+            if self.observer:
+                self.observer.external_api_call("yutori", "create_task", create_duration, not task_data.get("error"))
             
             if task_data.get("error"):
                 job.status = "failed"
@@ -35,11 +44,14 @@ class ResearchAgent:
                 }
                 job.add_event("error", "Failed to create research task", task_data)
                 self.store.update_job(job)
+                logger.error("research_create_failed", job_id=job.job_id, error=task_data)
                 return
             
             task_id = task_data.get("id") or task_data.get("task_id")
             job.add_event("info", f"Research task created: {task_id}", {"task_id": task_id})
             self.store.update_job(job)
+            
+            logger.info("research_task_created", job_id=job.job_id, task_id=task_id)
             
             # Poll until completion
             result = await self._poll_task(job, task_id)
@@ -48,6 +60,7 @@ class ResearchAgent:
                 job.status = "cancelled"
                 job.add_event("info", "Research task cancelled")
                 self.store.update_job(job)
+                logger.info("research_cancelled", job_id=job.job_id)
                 return
             
             if result.get("error"):
@@ -58,10 +71,12 @@ class ResearchAgent:
                 }
                 job.add_event("error", "Research task failed", result)
                 self.store.update_job(job)
+                logger.error("research_failed", job_id=job.job_id, error=result)
                 return
             
-            # Extract structured result
-            structured_result = result.get("output", {})
+            # Extract structured result - Yutori returns it in 'structured_result' field
+            structured_result = result.get("structured_result", {})
+            markdown_result = result.get("result")  # Markdown format
             
             job.status = "succeeded"
             job.progress = 100
@@ -69,13 +84,22 @@ class ResearchAgent:
                 "task_id": task_id,
                 "view_url": result.get("view_url"),
                 "structured_result": structured_result,
-                "markdown_result": result.get("markdown")
+                "markdown_result": markdown_result
             }
             job.add_event("info", "Research task succeeded")
             self.store.update_job(job)
             
+            logger.info(
+                "research_succeeded",
+                job_id=job.job_id,
+                task_id=task_id,
+                has_answer=bool(structured_result.get("answer")),
+                bullet_count=len(structured_result.get("bullets", [])),
+                citation_count=len(structured_result.get("citations", []))
+            )
+            
         except Exception as e:
-            logger.error(f"Research agent error: {str(e)}")
+            logger.error("research_error", job_id=job.job_id, error=str(e), exc_info=True)
             job.status = "failed"
             job.error = {"message": str(e)}
             job.add_event("error", f"Unexpected error: {str(e)}")
@@ -84,7 +108,7 @@ class ResearchAgent:
     async def _create_task(self, query: str, timezone: str) -> Dict[str, Any]:
         """Create Yutori research task."""
         headers = {
-            "Authorization": f"Bearer {self.api_key}",
+            "X-API-Key": self.api_key,
             "Content-Type": "application/json"
         }
         
@@ -93,19 +117,22 @@ class ResearchAgent:
             "user_timezone": timezone,
             "task_spec": {
                 "output_schema": {
-                    "type": "object",
-                    "properties": {
-                        "answer": {"type": "string"},
-                        "bullets": {
-                            "type": "array",
-                            "items": {"type": "string"}
+                    "type": "json",
+                    "json_schema": {
+                        "type": "object",
+                        "properties": {
+                            "answer": {"type": "string"},
+                            "bullets": {
+                                "type": "array",
+                                "items": {"type": "string"}
+                            },
+                            "citations": {
+                                "type": "array",
+                                "items": {"type": "string"}
+                            }
                         },
-                        "citations": {
-                            "type": "array",
-                            "items": {"type": "string"}
-                        }
-                    },
-                    "required": ["answer", "bullets", "citations"]
+                        "required": ["answer", "bullets", "citations"]
+                    }
                 }
             }
         }
@@ -115,7 +142,7 @@ class ResearchAgent:
     async def _poll_task(self, job: Job, task_id: str) -> Dict[str, Any]:
         """Poll Yutori task until completion."""
         headers = {
-            "Authorization": f"Bearer {self.api_key}"
+            "X-API-Key": self.api_key
         }
         
         poll_url = f"{self.base_url}/{task_id}"
@@ -125,7 +152,12 @@ class ResearchAgent:
             await asyncio.sleep(2.5)
             poll_count += 1
             
+            start_time = time.time()
             result = await http_get_with_retry(poll_url, headers)
+            poll_duration = time.time() - start_time
+            
+            if self.observer:
+                self.observer.external_api_call("yutori", "poll_task", poll_duration, not result.get("error"))
             
             if result.get("error"):
                 return result
@@ -139,7 +171,11 @@ class ResearchAgent:
             })
             self.store.update_job(job)
             
+            if self.observer:
+                self.observer.job_progress(job, None, f"Status: {status}, elapsed: {int(elapsed)}s")
+            
             if status in ["succeeded", "completed", "success"]:
+                logger.info("research_poll_completed", job_id=job.job_id, poll_count=poll_count)
                 return result
             elif status in ["failed", "error"]:
                 return {"error": True, "message": result.get("error_message", "Task failed")}

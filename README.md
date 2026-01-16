@@ -42,6 +42,14 @@ API docs available at `http://localhost:8000/docs`
 
 ## API Endpoints
 
+### GET /healthz
+
+Health check endpoint.
+
+### GET /metrics
+
+Prometheus metrics endpoint for monitoring.
+
 ### POST /v1/command
 
 Main command endpoint - receives voice commands and orchestrates workflows.
@@ -352,6 +360,36 @@ curl http://localhost:8000/healthz
 
 ## Development
 
+### Observability
+
+The backend includes comprehensive observability features:
+
+- **Structured Logging**: JSON logs with automatic context (request_id, session_id, job_id)
+- **Distributed Tracing**: OpenTelemetry spans for request flows
+- **Prometheus Metrics**: Counters, histograms, and gauges for monitoring
+
+See [OBSERVABILITY.md](OBSERVABILITY.md) for detailed documentation.
+
+**Key metrics available at `/metrics`:**
+- Command counts by intent and status
+- Job duration histograms
+- Active job gauges
+- API latency distributions
+- External API call tracking
+
+**Example log output:**
+```json
+{
+  "event": "job_completed",
+  "job_id": "550e8400-e29b-41d4-a716-446655440000",
+  "job_type": "research",
+  "status": "succeeded",
+  "duration_seconds": 15.3,
+  "request_id": "abc-123",
+  "timestamp": "2026-01-16T10:30:45.123456Z"
+}
+```
+
 ### Project Structure
 ```
 .
@@ -361,6 +399,7 @@ curl http://localhost:8000/healthz
 │   ├── models.py            # Pydantic models
 │   ├── store.py             # Job storage (in-memory)
 │   ├── orchestrator.py      # Orchestrator agent
+│   ├── observability.py     # Logging, tracing, metrics
 │   ├── agents/
 │   │   ├── __init__.py
 │   │   ├── dialogue.py      # Response formatting
@@ -373,7 +412,8 @@ curl http://localhost:8000/healthz
 │       └── http.py          # HTTP helpers with retry
 ├── requirements.txt
 ├── .env.example
-└── README.md
+├── README.md
+└── OBSERVABILITY.md         # Observability guide
 ```
 
 ### Running Tests
