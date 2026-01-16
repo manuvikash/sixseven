@@ -9,19 +9,20 @@ from app.agents.research import ResearchAgent
 from app.agents.creative import CreativeAgent
 from app.agents.status import StatusAgent
 from app.agents.cancel import CancellationAgent
-import logging
+from app.observability import get_logger
 
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 
 class OrchestratorAgent:
     """Orchestrator coordinates all agents and manages job lifecycle."""
     
-    def __init__(self, store: JobStore):
+    def __init__(self, store: JobStore, observer=None):
         self.store = store
+        self.observer = observer
         self.dialogue_agent = DialogueAgent()
-        self.research_agent = ResearchAgent(store)
-        self.creative_agent = CreativeAgent(store)
+        self.research_agent = ResearchAgent(store, observer)
+        self.creative_agent = CreativeAgent(store, observer)
         self.status_agent = StatusAgent(store, self.dialogue_agent)
         self.cancel_agent = CancellationAgent(store)
     
@@ -33,6 +34,13 @@ class OrchestratorAgent:
         
         # Parse intent
         intent, parsed_data = self._parse_intent(request.command_text)
+        
+        logger.info(
+            "intent_parsed",
+            intent=intent,
+            session_id=session_id,
+            has_query=bool(parsed_data.get("query") or parsed_data.get("prompt"))
+        )
         
         # Update session
         session = self.store.get_session(session_id)
@@ -109,6 +117,10 @@ class OrchestratorAgent:
         )
         self.store.create_job(job)
         
+        # Notify observer
+        if self.observer:
+            self.observer.job_created(job)
+        
         # Update session
         session.active_job_id = job.job_id
         self.store.update_session(session)
@@ -156,6 +168,10 @@ class OrchestratorAgent:
             )
         )
         self.store.create_job(job)
+        
+        # Notify observer
+        if self.observer:
+            self.observer.job_created(job)
         
         # Update session
         session.active_job_id = job.job_id
@@ -207,20 +223,32 @@ class OrchestratorAgent:
     async def _execute_research(self, job: Job, timezone: str):
         """Execute research job asynchronously."""
         try:
+            if self.observer:
+                self.observer.job_started(job)
             await self.research_agent.execute(job, timezone)
+            if self.observer:
+                self.observer.job_completed(job)
         except Exception as e:
-            logger.error(f"Research execution error: {str(e)}")
+            logger.error("research_execution_error", error=str(e), job_id=job.job_id, exc_info=True)
             job.status = "failed"
             job.error = {"message": str(e)}
             self.store.update_job(job)
+            if self.observer:
+                self.observer.job_completed(job)
     
     async def _execute_creative(self, job: Job, image_base64: str, 
                                 imagination: str, aspect_ratio: str):
         """Execute creative job asynchronously."""
         try:
+            if self.observer:
+                self.observer.job_started(job)
             await self.creative_agent.execute(job, image_base64, imagination, aspect_ratio)
+            if self.observer:
+                self.observer.job_completed(job)
         except Exception as e:
-            logger.error(f"Creative execution error: {str(e)}")
+            logger.error("creative_execution_error", error=str(e), job_id=job.job_id, exc_info=True)
             job.status = "failed"
             job.error = {"message": str(e)}
             self.store.update_job(job)
+            if self.observer:
+                self.observer.job_completed(job)
