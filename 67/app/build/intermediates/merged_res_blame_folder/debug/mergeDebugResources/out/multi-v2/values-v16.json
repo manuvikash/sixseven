@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.app.sixtyseven.app-mergeDebugResources-34:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "/Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/1a329a422bad43abe2f4b0cef4be92e2/transformed/appcompat-1.6.1/res/values-v16/values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    }
+                }
+            ]
+        }
+    ]
+}

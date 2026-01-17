@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-mergeDebugResources-35:/layout/dialog_jobs.xml",
+        "source": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-main-38:/layout/dialog_jobs.xml"
+    },
+    {
+        "merged": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-mergeDebugResources-35:/layout/dialog_image_viewer.xml",
+        "source": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-main-38:/layout/dialog_image_viewer.xml"
+    },
+    {
+        "merged": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-mergeDebugResources-35:/layout/dialog_text_viewer.xml",
+        "source": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-main-38:/layout/dialog_text_viewer.xml"
+    },
+    {
+        "merged": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-mergeDebugResources-35:/layout/item_job.xml",
+        "source": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-main-38:/layout/item_job.xml"
+    },
+    {
+        "merged": "com.app.sixtyseven.app-mergeDebugResources-35:/layout/item_job.xml",
+        "source": "com.app.sixtyseven.app-main-38:/layout/item_job.xml"
+    },
+    {
+        "merged": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-mergeDebugResources-35:/layout/activity_main.xml",
+        "source": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-main-38:/layout/activity_main.xml"
+    }
+]

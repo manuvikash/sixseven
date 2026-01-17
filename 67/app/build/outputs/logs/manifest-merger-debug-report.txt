@@ -1,0 +1,467 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:2:1-51:12
+INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:2:1-51:12
+MERGED from [androidx.databinding:viewbinding:8.5.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/dce3de03a5d6fa84621c936d3958de0b/transformed/viewbinding-8.5.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.material:material:1.11.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/ebccd1a70c54533cdd4ccb3cca652e2b/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/14edf2d6420604d11022c8437e1ffb87/transformed/constraintlayout-2.1.4/AndroidManifest.xml:2:1-11:12
+MERGED from [io.coil-kt:coil:2.5.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/4a2968c731dc1aebe543d8a5a550636a/transformed/coil-2.5.0/AndroidManifest.xml:2:1-7:12
+MERGED from [io.coil-kt:coil-base:2.5.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/7d5d1ced73752bb58e0720ca52fc91bd/transformed/coil-base-2.5.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/e0c25a115aab427a1888a56dfb8897e4/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/1a329a422bad43abe2f4b0cef4be92e2/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:3:1-73:12
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:3:1-73:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/df4dc921a58d0440577946f664decf8f/transformed/emoji2-views-helper-1.2.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d3b4d49ce70983159615691b7f98748f/transformed/emoji2-1.2.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/98a3640cd047cfa8f70b4164ff488f3f/transformed/viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.6] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/da24b8eab8ddd3ac06186ef1110df957/transformed/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.8.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/cdedd2eed83401d7cab4362d750829ed/transformed/activity-1.8.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/3ed924316e83f5eaa31a6c72cf2aa908/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/79b3ed29d8981ee4b404fb6e569f3898/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/319e9a2b9cdb58d6e5401cea811a8b7e/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/4d0d2245803802c183d3392a4fd8090a/transformed/lifecycle-livedata-core-ktx-2.9.4/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.savedstate:savedstate-android:1.3.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/3da172aa6ccb6ad2b24c8916cd51e210/transformed/savedstate-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/af6ff2e4dff52a78ed2766227b2631bf/transformed/lifecycle-viewmodel-savedstate-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/256c78fdc24bf0fedc6f4e45c090f968/transformed/lifecycle-livedata-2.9.4/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/9a26b5dec788347017a3eb5c6e01c7d4/transformed/lifecycle-runtime-ktx/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/7684dbbe45546446d1e933c4d54932ac/transformed/lifecycle-viewmodel-2.9.4/AndroidManifest.xml:2:1-5:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/decdaeb47459b0b2eed558b441f12474/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/aed69ec6d264db74af07e056233a262b/transformed/coordinatorlayout-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a37392a6a3ba61a7ae853f9217e3bc0f/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/6ccb3403f7859205ddea9350163fb696/transformed/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/26f81d172c86558f4e935de93bac7631/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/63957e74731750b2118f9235e8f1b2bc/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d70b714a9252fe098af47fb23df584c4/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/62b3e7ecb647e105065dfca92f6038b7/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.1.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/426f32cdf87a20a67f7cef1f74130107/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core-ktx:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/4705058f998bc00856c13b8c3044973d/transformed/core-ktx-1.13.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/56901ef384c39bc363b26b7a4942f41d/transformed/lifecycle-runtime-release/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/3389f4986b7037713158f095c63d944a/transformed/lifecycle-livedata-core-2.9.4/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/94d7e1b52d9ff9c1f5373a3765f2b69a/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-service:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a121b030fefc9c3fe37311da61c8f26a/transformed/lifecycle-service-2.9.4/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.security:security-crypto:1.1.0-alpha04] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/be7ec82cfc3f49f1ba96d3a02ef50dd5/transformed/security-crypto-1.1.0-alpha04/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/70279212a5044c9338df837228a625a7/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/0c16f79c0179db813e54f6da3b2267a5/transformed/core-viewtree-1.0.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.7] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/2586a7dec2949698faf7b5016056be3e/transformed/exifinterface-1.3.7/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d688c279e0fb11cda6f07b99600a34d6/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8c5899bb885f2f18ef5793b00b6253cb/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/0ff1d010bdbf19fa930157db49f112c7/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b7bad49bcfe419d9de1effb0af0bf28/transformed/profileinstaller-1.4.0/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/89f22e3cc47df96e9a738f478bb03379/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/cee24e877f4a0fa89381b6facf8fbc1b/transformed/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/b5bb8ee57f9b09410a6688348af95cbb/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b70ab46ff336ee347afb8e10990954a/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/3eee6820b1753a9907bdf6081df26419/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/08042803bf850b2b8c5471c925495df5/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/183346572c232bf62767b24fa0d2e649/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:2:1-7:12
+MERGED from [com.facebook.soloader:soloader:0.12.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/860fc1b05e4611558462274927bbc739/transformed/soloader-0.12.1/AndroidManifest.xml:2:1-17:12
+	package
+		INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.BLUETOOTH
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:5:5-68
+MERGED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:13:5-68
+MERGED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:13:5-68
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:13:5-68
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:13:5-68
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:5:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:6:5-74
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:6:22-71
+uses-permission#android.permission.BLUETOOTH_CONNECT
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:7:5-76
+MERGED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:12:5-76
+MERGED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:12:5-76
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:12:5-76
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:12:5-76
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:7:22-73
+uses-permission#android.permission.BLUETOOTH_SCAN
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:8:5-73
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:8:22-70
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:9:5-80
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:9:22-77
+uses-permission#android.permission.INTERNET
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:12:5-67
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:12:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:13:5-79
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:13:22-76
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:16:5-71
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:16:22-68
+application
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:18:5-49:19
+INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:18:5-49:19
+MERGED from [com.google.android.material:material:1.11.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/ebccd1a70c54533cdd4ccb3cca652e2b/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.11.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/ebccd1a70c54533cdd4ccb3cca652e2b/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/14edf2d6420604d11022c8437e1ffb87/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/14edf2d6420604d11022c8437e1ffb87/transformed/constraintlayout-2.1.4/AndroidManifest.xml:9:5-20
+MERGED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:26:5-71:19
+MERGED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:26:5-71:19
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:26:5-71:19
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:26:5-71:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d3b4d49ce70983159615691b7f98748f/transformed/emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d3b4d49ce70983159615691b7f98748f/transformed/emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/94d7e1b52d9ff9c1f5373a3765f2b69a/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/94d7e1b52d9ff9c1f5373a3765f2b69a/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/70279212a5044c9338df837228a625a7/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/70279212a5044c9338df837228a625a7/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b7bad49bcfe419d9de1effb0af0bf28/transformed/profileinstaller-1.4.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b7bad49bcfe419d9de1effb0af0bf28/transformed/profileinstaller-1.4.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/89f22e3cc47df96e9a738f478bb03379/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/89f22e3cc47df96e9a738f478bb03379/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [com.facebook.soloader:soloader:0.12.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/860fc1b05e4611558462274927bbc739/transformed/soloader-0.12.1/AndroidManifest.xml:11:5-15:19
+MERGED from [com.facebook.soloader:soloader:0.12.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/860fc1b05e4611558462274927bbc739/transformed/soloader-0.12.1/AndroidManifest.xml:11:5-15:19
+	android:extractNativeLibs
+		INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:26:18-86
+	android:supportsRtl
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:23:9-35
+	android:label
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:22:9-41
+	android:icon
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:21:9-56
+	android:allowBackup
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:20:9-35
+	android:theme
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:24:9-48
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:19:9-38
+meta-data#com.meta.wearable.mwdat.APPLICATION_ID
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:28:9-30:33
+	android:value
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:30:13-30
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:29:13-66
+activity#com.app.sixtyseven.MainActivity
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:32:9-47:20
+	android:screenOrientation
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:35:13-49
+	android:exported
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:34:13-36
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:33:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:36:13-39:29
+action#android.intent.action.MAIN
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:37:17-69
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:37:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:38:17-77
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:38:27-74
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:scheme:sixtyseven
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:41:13-46:29
+action#android.intent.action.VIEW
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:42:17-69
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:42:25-66
+category#android.intent.category.BROWSABLE
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:43:17-78
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:43:27-75
+category#android.intent.category.DEFAULT
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:44:17-76
+	android:name
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:44:27-73
+data
+ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:45:17-53
+	android:scheme
+		ADDED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml:45:23-50
+uses-sdk
+INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml
+INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml
+MERGED from [androidx.databinding:viewbinding:8.5.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/dce3de03a5d6fa84621c936d3958de0b/transformed/viewbinding-8.5.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.databinding:viewbinding:8.5.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/dce3de03a5d6fa84621c936d3958de0b/transformed/viewbinding-8.5.0/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.material:material:1.11.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/ebccd1a70c54533cdd4ccb3cca652e2b/transformed/material-1.11.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.11.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/ebccd1a70c54533cdd4ccb3cca652e2b/transformed/material-1.11.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/14edf2d6420604d11022c8437e1ffb87/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/14edf2d6420604d11022c8437e1ffb87/transformed/constraintlayout-2.1.4/AndroidManifest.xml:5:5-7:41
+MERGED from [io.coil-kt:coil:2.5.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/4a2968c731dc1aebe543d8a5a550636a/transformed/coil-2.5.0/AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt:coil:2.5.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/4a2968c731dc1aebe543d8a5a550636a/transformed/coil-2.5.0/AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt:coil-base:2.5.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/7d5d1ced73752bb58e0720ca52fc91bd/transformed/coil-base-2.5.0/AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt:coil-base:2.5.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/7d5d1ced73752bb58e0720ca52fc91bd/transformed/coil-base-2.5.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/e0c25a115aab427a1888a56dfb8897e4/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/e0c25a115aab427a1888a56dfb8897e4/transformed/appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/1a329a422bad43abe2f4b0cef4be92e2/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/1a329a422bad43abe2f4b0cef4be92e2/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:8:5-10:41
+MERGED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:8:5-10:41
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:8:5-10:41
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:8:5-10:41
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/df4dc921a58d0440577946f664decf8f/transformed/emoji2-views-helper-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/df4dc921a58d0440577946f664decf8f/transformed/emoji2-views-helper-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d3b4d49ce70983159615691b7f98748f/transformed/emoji2-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d3b4d49ce70983159615691b7f98748f/transformed/emoji2-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/98a3640cd047cfa8f70b4164ff488f3f/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/98a3640cd047cfa8f70b4164ff488f3f/transformed/viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/da24b8eab8ddd3ac06186ef1110df957/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/da24b8eab8ddd3ac06186ef1110df957/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.8.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/cdedd2eed83401d7cab4362d750829ed/transformed/activity-1.8.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/cdedd2eed83401d7cab4362d750829ed/transformed/activity-1.8.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/3ed924316e83f5eaa31a6c72cf2aa908/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/3ed924316e83f5eaa31a6c72cf2aa908/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/79b3ed29d8981ee4b404fb6e569f3898/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/79b3ed29d8981ee4b404fb6e569f3898/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/319e9a2b9cdb58d6e5401cea811a8b7e/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/319e9a2b9cdb58d6e5401cea811a8b7e/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/4d0d2245803802c183d3392a4fd8090a/transformed/lifecycle-livedata-core-ktx-2.9.4/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core-ktx:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/4d0d2245803802c183d3392a4fd8090a/transformed/lifecycle-livedata-core-ktx-2.9.4/AndroidManifest.xml:5:5-44
+MERGED from [androidx.savedstate:savedstate-android:1.3.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/3da172aa6ccb6ad2b24c8916cd51e210/transformed/savedstate-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate-android:1.3.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/3da172aa6ccb6ad2b24c8916cd51e210/transformed/savedstate-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/af6ff2e4dff52a78ed2766227b2631bf/transformed/lifecycle-viewmodel-savedstate-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate-android:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/af6ff2e4dff52a78ed2766227b2631bf/transformed/lifecycle-viewmodel-savedstate-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/256c78fdc24bf0fedc6f4e45c090f968/transformed/lifecycle-livedata-2.9.4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/256c78fdc24bf0fedc6f4e45c090f968/transformed/lifecycle-livedata-2.9.4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/9a26b5dec788347017a3eb5c6e01c7d4/transformed/lifecycle-runtime-ktx/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-ktx-android:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/9a26b5dec788347017a3eb5c6e01c7d4/transformed/lifecycle-runtime-ktx/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/7684dbbe45546446d1e933c4d54932ac/transformed/lifecycle-viewmodel-2.9.4/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/7684dbbe45546446d1e933c4d54932ac/transformed/lifecycle-viewmodel-2.9.4/AndroidManifest.xml:4:5-43
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/decdaeb47459b0b2eed558b441f12474/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-android:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/decdaeb47459b0b2eed558b441f12474/transformed/lifecycle-viewmodel-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/aed69ec6d264db74af07e056233a262b/transformed/coordinatorlayout-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/aed69ec6d264db74af07e056233a262b/transformed/coordinatorlayout-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a37392a6a3ba61a7ae853f9217e3bc0f/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a37392a6a3ba61a7ae853f9217e3bc0f/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/6ccb3403f7859205ddea9350163fb696/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/6ccb3403f7859205ddea9350163fb696/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/26f81d172c86558f4e935de93bac7631/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/26f81d172c86558f4e935de93bac7631/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/63957e74731750b2118f9235e8f1b2bc/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/63957e74731750b2118f9235e8f1b2bc/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d70b714a9252fe098af47fb23df584c4/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d70b714a9252fe098af47fb23df584c4/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/62b3e7ecb647e105065dfca92f6038b7/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/62b3e7ecb647e105065dfca92f6038b7/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/426f32cdf87a20a67f7cef1f74130107/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/426f32cdf87a20a67f7cef1f74130107/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-ktx:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/4705058f998bc00856c13b8c3044973d/transformed/core-ktx-1.13.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/4705058f998bc00856c13b8c3044973d/transformed/core-ktx-1.13.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/56901ef384c39bc363b26b7a4942f41d/transformed/lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime-android:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/56901ef384c39bc363b26b7a4942f41d/transformed/lifecycle-runtime-release/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/3389f4986b7037713158f095c63d944a/transformed/lifecycle-livedata-core-2.9.4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/3389f4986b7037713158f095c63d944a/transformed/lifecycle-livedata-core-2.9.4/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/94d7e1b52d9ff9c1f5373a3765f2b69a/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/94d7e1b52d9ff9c1f5373a3765f2b69a/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a121b030fefc9c3fe37311da61c8f26a/transformed/lifecycle-service-2.9.4/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-service:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a121b030fefc9c3fe37311da61c8f26a/transformed/lifecycle-service-2.9.4/AndroidManifest.xml:5:5-44
+MERGED from [androidx.security:security-crypto:1.1.0-alpha04] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/be7ec82cfc3f49f1ba96d3a02ef50dd5/transformed/security-crypto-1.1.0-alpha04/AndroidManifest.xml:20:5-44
+MERGED from [androidx.security:security-crypto:1.1.0-alpha04] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/be7ec82cfc3f49f1ba96d3a02ef50dd5/transformed/security-crypto-1.1.0-alpha04/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/70279212a5044c9338df837228a625a7/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/70279212a5044c9338df837228a625a7/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/0c16f79c0179db813e54f6da3b2267a5/transformed/core-viewtree-1.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-viewtree:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/0c16f79c0179db813e54f6da3b2267a5/transformed/core-viewtree-1.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.3.7] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/2586a7dec2949698faf7b5016056be3e/transformed/exifinterface-1.3.7/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.7] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/2586a7dec2949698faf7b5016056be3e/transformed/exifinterface-1.3.7/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d688c279e0fb11cda6f07b99600a34d6/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d688c279e0fb11cda6f07b99600a34d6/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8c5899bb885f2f18ef5793b00b6253cb/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8c5899bb885f2f18ef5793b00b6253cb/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/0ff1d010bdbf19fa930157db49f112c7/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/0ff1d010bdbf19fa930157db49f112c7/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b7bad49bcfe419d9de1effb0af0bf28/transformed/profileinstaller-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b7bad49bcfe419d9de1effb0af0bf28/transformed/profileinstaller-1.4.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/89f22e3cc47df96e9a738f478bb03379/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/89f22e3cc47df96e9a738f478bb03379/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/cee24e877f4a0fa89381b6facf8fbc1b/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/cee24e877f4a0fa89381b6facf8fbc1b/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/b5bb8ee57f9b09410a6688348af95cbb/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/b5bb8ee57f9b09410a6688348af95cbb/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b70ab46ff336ee347afb8e10990954a/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b70ab46ff336ee347afb8e10990954a/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/3eee6820b1753a9907bdf6081df26419/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/3eee6820b1753a9907bdf6081df26419/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/08042803bf850b2b8c5471c925495df5/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/08042803bf850b2b8c5471c925495df5/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/183346572c232bf62767b24fa0d2e649/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/183346572c232bf62767b24fa0d2e649/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [com.facebook.soloader:soloader:0.12.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/860fc1b05e4611558462274927bbc739/transformed/soloader-0.12.1/AndroidManifest.xml:7:5-9:41
+MERGED from [com.facebook.soloader:soloader:0.12.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/860fc1b05e4611558462274927bbc739/transformed/soloader-0.12.1/AndroidManifest.xml:7:5-9:41
+	android:targetSdkVersion
+		INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/satheesh/meta-app/67/app/src/main/AndroidManifest.xml
+queries
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:15:5-18:15
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:15:5-18:15
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:15:5-18:15
+package#com.facebook.stella
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:16:9-55
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:16:9-55
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:16:9-55
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:16:18-52
+package#com.facebook.stella_debug
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:17:9-61
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:17:9-61
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:17:9-61
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:17:18-58
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:20:5-22:47
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:20:5-22:47
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:20:5-22:47
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:22:9-44
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:21:9-81
+permission#com.app.sixtyseven.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:20:5-22:47
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:20:5-22:47
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:20:5-22:47
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:22:9-44
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:21:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:24:5-97
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:24:5-97
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:24:5-97
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:24:22-94
+uses-permission#com.app.sixtyseven.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:24:5-97
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:24:5-97
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:24:5-97
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+MERGED from [androidx.core:core:1.13.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/65a757889dfbe4dc415d29a2df5641b1/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:24:22-94
+service#com.meta.wearable.acdc.sdk.service.ACDCRegistrationService
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:27:9-35:19
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:27:9-35:19
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:27:9-35:19
+	android:exported
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:29:13-36
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:28:13-86
+intent-filter#action:name:com.meta.wearable.acdc.sdk.service.ACDCRegistrationService.BIND+category:name:android.intent.category.DEFAULT
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:30:13-34:29
+action#com.meta.wearable.acdc.sdk.service.ACDCRegistrationService.BIND
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:31:17-106
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:31:25-103
+provider#androidx.startup.InitializationProvider
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:37:9-50:20
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:37:9-50:20
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:37:9-50:20
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d3b4d49ce70983159615691b7f98748f/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d3b4d49ce70983159615691b7f98748f/transformed/emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/94d7e1b52d9ff9c1f5373a3765f2b69a/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/94d7e1b52d9ff9c1f5373a3765f2b69a/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b7bad49bcfe419d9de1effb0af0bf28/transformed/profileinstaller-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b7bad49bcfe419d9de1effb0af0bf28/transformed/profileinstaller-1.4.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/89f22e3cc47df96e9a738f478bb03379/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/89f22e3cc47df96e9a738f478bb03379/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	android:authorities
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:39:13-68
+	android:exported
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:40:13-37
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:38:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:41:13-43:52
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:41:13-43:52
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:41:13-43:52
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d3b4d49ce70983159615691b7f98748f/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d3b4d49ce70983159615691b7f98748f/transformed/emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:43:17-49
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:42:17-75
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:44:13-46:52
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:44:13-46:52
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:44:13-46:52
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b7bad49bcfe419d9de1effb0af0bf28/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b7bad49bcfe419d9de1effb0af0bf28/transformed/profileinstaller-1.4.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:46:17-49
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:45:17-85
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:47:13-49:52
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:47:13-49:52
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:47:13-49:52
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/94d7e1b52d9ff9c1f5373a3765f2b69a/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:29:13-31:52
+MERGED from [androidx.lifecycle:lifecycle-process:2.9.4] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/94d7e1b52d9ff9c1f5373a3765f2b69a/transformed/lifecycle-process-2.9.4/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:49:17-49
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:48:17-78
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:52:9-70:20
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:52:9-70:20
+MERGED from [com.meta.wearable:mwdat-core:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/a5b517b5916834e3e23fd9633c33a419/transformed/mwdat-core-0.3.0/AndroidManifest.xml:52:9-70:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b7bad49bcfe419d9de1effb0af0bf28/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/8b7bad49bcfe419d9de1effb0af0bf28/transformed/profileinstaller-1.4.0/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:55:13-35
+	android:exported
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:56:13-36
+	android:permission
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:57:13-57
+	android:directBootAware
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:54:13-44
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:53:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:58:13-60:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:59:17-91
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:59:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:61:13-63:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:62:17-85
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:62:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:64:13-66:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:65:17-88
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:65:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:67:13-69:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:68:17-95
+	android:name
+		ADDED from [com.meta.wearable:mwdat-camera:0.3.0] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/d5523267221cd44a90775321ce9bb586/transformed/mwdat-camera-0.3.0/AndroidManifest.xml:68:25-92
+meta-data#com.facebook.soloader.enabled
+ADDED from [com.facebook.soloader:soloader:0.12.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/860fc1b05e4611558462274927bbc739/transformed/soloader-0.12.1/AndroidManifest.xml:12:9-14:37
+	android:value
+		ADDED from [com.facebook.soloader:soloader:0.12.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/860fc1b05e4611558462274927bbc739/transformed/soloader-0.12.1/AndroidManifest.xml:14:13-34
+	android:name
+		ADDED from [com.facebook.soloader:soloader:0.12.1] /Users/satheesh/.gradle/caches/9.0-milestone-1/transforms/860fc1b05e4611558462274927bbc739/transformed/soloader-0.12.1/AndroidManifest.xml:13:13-57

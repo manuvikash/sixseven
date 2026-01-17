@@ -1,0 +1,42 @@
+[versions]
+# Meta WDA SDK - check https://github.com/facebook/meta-wearables-dat-android/packages for latest
+meta-wda = "0.3.0"
+
+# Android
+agp = "8.5.0"
+kotlin = "2.1.0"
+core-ktx = "1.12.0"
+appcompat = "1.6.1"
+material = "1.11.0"
+constraintlayout = "2.1.4"
+lifecycle = "2.7.0"
+exifinterface = "1.3.7"
+
+# Networking
+okhttp = "4.12.0"
+coroutines = "1.7.3"
+coil = "2.5.0"
+
+[libraries]
+# Meta WDA SDK
+meta-wda-core = { group = "com.meta.wearable", name = "mwdat-core", version.ref = "meta-wda" }
+meta-wda-camera = { group = "com.meta.wearable", name = "mwdat-camera", version.ref = "meta-wda" }
+
+# Android
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+coordinatorlayout = { group = "androidx.coordinatorlayout", name = "coordinatorlayout", version = "1.2.0" }
+lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+exifinterface = { group = "androidx.exifinterface", name = "exifinterface", version.ref = "exifinterface" }
+
+# Networking
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-logging = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
+coil = { group = "io.coil-kt", name = "coil", version.ref = "coil" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

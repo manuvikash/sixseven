@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-debug-36:/layout_dialog_image_viewer.xml.flat",
+        "source": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-main-38:/layout/dialog_image_viewer.xml"
+    },
+    {
+        "merged": "com.app.sixtyseven.app-debug-36:/layout_item_job.xml.flat",
+        "source": "com.app.sixtyseven.app-main-38:/layout/item_job.xml"
+    },
+    {
+        "merged": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-debug-36:/drawable_status_badge.xml.flat",
+        "source": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-main-38:/drawable/status_badge.xml"
+    },
+    {
+        "merged": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-debug-36:/layout_activity_main.xml.flat",
+        "source": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-debug-36:/layout_item_job.xml.flat",
+        "source": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-main-38:/layout/item_job.xml"
+    },
+    {
+        "merged": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-debug-36:/layout_dialog_text_viewer.xml.flat",
+        "source": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-main-38:/layout/dialog_text_viewer.xml"
+    },
+    {
+        "merged": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-debug-36:/layout_dialog_jobs.xml.flat",
+        "source": "/Users/satheesh/.gradle/daemon/9.0-milestone-1/com.app.sixtyseven.app-main-38:/layout/dialog_jobs.xml"
+    }
+]

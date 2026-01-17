@@ -1,0 +1,8 @@
+# Copy this file to local.properties and add your GitHub token
+# Create a Personal Access Token (classic) at: https://github.com/settings/tokens
+# Required scope: read:packages
+
+github_token=ghp_YOUR_TOKEN_HERE
+
+# Optional: your GitHub username (can use any value like "token" if not needed)
+gpr.user=token
